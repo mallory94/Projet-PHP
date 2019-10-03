@@ -9,22 +9,18 @@
 function verif_ident_BD($login,$mdp){ 
 	require ("modele/connect.php") ; 
 	//global $pdo;
-	$role= array("professeur","etudiant");
-	$loginNames= ["login_prof","login_etu"];
 	$_SESSION['roleCourant'] ="";
 	$sql="SELECT * FROM professeur where login_prof=:login";
 	$resultat= array(); 
-	
 	try {
 		$commande = $pdo->prepare($sql);
 		$commande->bindParam(':login', $login);
-		
 		$bool = $commande->execute();
 		if ($bool) {
 			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC); //tableau d'enregistrements
 			if (count($resultat)== 0) {
-				$sql="SELECT * FROM etudiant where login_etu=:login";
-				$commande = $pdo->prepare($sql);
+				$sql="SELECT * FROM etudiant where login_etu=:login"; //requête qui cherche etudiant
+				$commande = $pdo->prepare($sql); //prépare la requete pour recup l'etudiant
 				$commande->bindParam(':login', $login);
 				$bool = $commande->execute();
 				if($bool) {
