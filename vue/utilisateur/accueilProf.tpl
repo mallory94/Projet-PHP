@@ -11,7 +11,7 @@
 
 <h3> 	Bienvenue
 				<?php 
-					printf ('M. %s, votre mot de passe est : %s', $login, $mdp);
+					printf ('M. %s, votre mot de passe est : %s et votre rôle est : %s', $login, $mdp, $_SESSION['roleCourant']);
 				?>
 </h3>
 

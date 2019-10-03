@@ -9,15 +9,41 @@
 function verif_ident_BD($login,$mdp){ 
 	require ("modele/connect.php") ; 
 	//global $pdo;
-	$sql="SELECT * FROM `professeur` where login_prof=:login";
+	$role= array("professeur","etudiant");
+	$loginNames= ["login_prof","login_etu"];
+	$_SESSION['roleCourant'] ="";
+	$sql="SELECT * FROM professeur where login_prof=:login";
 	$resultat= array(); 
 	
 	try {
 		$commande = $pdo->prepare($sql);
 		$commande->bindParam(':login', $login);
+		
 		$bool = $commande->execute();
 		if ($bool) {
 			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC); //tableau d'enregistrements
+			if (count($resultat)== 0) {
+				$sql="SELECT * FROM etudiant where login_etu=:login";
+				$commande = $pdo->prepare($sql);
+				$commande->bindParam(':login', $login);
+				$bool = $commande->execute();
+				if($bool) {
+					$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+					if (count($resultat)== 0) {
+						return false;
+					}
+					else if ($resultat[0]['pass_etu'] == $mdp) {
+						$_SESSION['roleCourant'] = "etudiant";
+						return true;
+					}
+				}
+			}
+
+			else if ($resultat[0]['pass_prof'] == $mdp){
+				$_SESSION['roleCourant'] = "professeur";
+				return true; 
+			}
+			
 			//var_dump($resultat);
 			//die();
 		}
@@ -26,15 +52,9 @@ function verif_ident_BD($login,$mdp){
 		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
 		die(); // On arrête tout.
 	}
-	
-	if (count($resultat)== 0) 
-		return false; 
-	
-	if ($resultat[0]['pass_prof'] == $mdp){
-		return true;
-	}
-	else 
-		return false;
+		
+
+	return false;
 	//faire une  requête SQL 
 }
 
