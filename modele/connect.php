@@ -1,9 +1,9 @@
 <?php
 //Connexion à la base de donnée 
 	$hostname = "localhost";	
-	$base= "base-projet";
+	$base= "MaBase";
 	$loginBD= "root";	
-	$passBD="root";
+	$passBD="";
 	$pdo = null;
 
 try {

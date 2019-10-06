@@ -34,14 +34,13 @@ function verif_ident_BD($login,$mdp){
 					}
 				}
 			}
-
 			else if ($resultat[0]['pass_prof'] == $mdp){
 				$_SESSION['roleCourant'] = "professeur";
 				return true; 
 			}
 			
-			//var_dump($resultat);
-			//die();
+			var_dump($resultat);
+			die();
 		}
 	}
 	catch (PDOException $e) {

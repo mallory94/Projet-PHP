@@ -1,9 +1,8 @@
 <!doctype HTML>
 
 <header>
-  <link href="./vue/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="./vue/styleCSS/ident.css">
-  <title>Identification</title>
+  <link href="../bootstrap/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../styleCSS/ident.css">
 </header>
 
 <body>
@@ -27,18 +26,18 @@
 
     <!-- Icon -->
     <div class="fadeIn first">
-      <img src="./vue/images/logo.jpg" id="icon" alt="Icone Université de Paris" />
+      <img src="../images/logo.jpg" id="icon" alt="Icone Université de Paris" />
     </div>
 
     <!-- Login Form -->
     <form method="post" action="index.php?controle=utilisateur&action=ident">
       <input type="text" id="login" class="fadeIn second" name="login" placeholder="Identifiant" value="<?php echo $login; ?>">
-      <input type="password" id="password" class="fadeIn third" name="mdp" placeholder="Mot de passe" value="<?php echo $mdp; ?>">
+      <input type="password" id="password" class="fadeIn third" name="login" placeholder="Mot de passe" value="<?php echo $mdp; ?>">
       <input type="submit" class="fadeIn fourth" value="Connexion">
     </form>
 
     <div>
-    	<?php echo "<p style='color:red;'>".$msg."</p>"; ?>
+    	<?php echo $msg; ?>
     </div>
 
   </div>

@@ -14,7 +14,7 @@ function ident() {
 	    if  (!verif_ident($login,$mdp)) {
 			$_SESSION['login']=array();
 			$_SESSION['mdp']="";
-	        $msg ="erreur de saisie";
+	        $msg ="Erreur : Login / Mot de passe incorrect";
 	        require ("./vue/utilisateur/ident.tpl") ;
 		}
 	    else { 
@@ -38,7 +38,11 @@ function verif_ident($login,$mdp) {
 function accueil() {
 	$login = $_SESSION['login'];
 	$mdp = $_SESSION['mdp'];
-	require ("./vue/utilisateur/accueilProf.tpl");
+	if($_SESSION['roleCourant'] == "professeur"){
+		require ("./vue/utilisateur/accueilProf.tpl");
+	} else if($_SESSION['roleCourant'] == "etudiant"){
+		require ("./vue/utilisateur/accueilEtu.tpl");
+	}
 }
 
 function liste_u() {
