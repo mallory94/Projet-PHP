@@ -22,17 +22,18 @@
 							?>
 			</h3>-->
 			</div>
-		</header>
+	</header>
+
 	<body>
 		<div class="contentPage">
-			<form method="get" action="">
-				<?php require('./modele/themeBD.php'); $themes = recupTheme(); ?>
-				 <select name="theme">
-		    		 <?php 
-		    		 	foreach($themes as $theme){
-		    		 	   	echo '<option value="theme">' . $theme['titre_theme'] . '</option>';
-		    			}
-		    		 ?>
+			<form method="post" action="">
+			 	<?php require("./controle/test.php"); $liste = remplissageListeTest(); ?>
+			 	<select name="liste des tests">
+				 	<?php 
+				 		foreach($liste as $test){ 
+							echo '<option value="">' . $test['titre_test'] . '</option>';
+						} 
+					?>
 	  			 </select>
 	  			<br><br>
 	  			<input type="submit">
