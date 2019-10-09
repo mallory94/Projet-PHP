@@ -1,0 +1,152 @@
+html {
+  background-color: #929292;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+  background-color: #929292;
+}
+
+a {
+  color: #92badd;
+  display:inline-block;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+h2 {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  display:inline-block;
+  margin: 10px 8px 10px 8px; 
+  color: #cccccc;
+}
+
+h1{
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  display:inline-block;
+  margin: 10px 8px 10px 8px; 
+  color: #000;
+}
+
+header{
+  position : fixed;
+  background-color : #830143;
+  width: 100%;
+  box-shadow: 0 10px 30px 0 rgba(0,0,0,0.4);
+  z-index  : 99;
+  padding : 10px 0px 10px 0px;
+}
+
+#logo img{
+  height : 30px;
+  position : static;
+  float : left;
+  padding-right : 5%;
+}
+
+#titre{
+  text-align : center;
+  width : 60%;
+  padding-left : 25%;
+  left : 0;
+  float : left;
+}
+#userInfo{
+  text-align : right;
+  padding-right : 10px;
+  width : 20%;
+  float : right;
+  right : auto;
+}
+
+.contentPage{
+  position: relative;
+  padding-top : 4.5%;
+  padding-left: 1%;
+}
+
+input[type=submit]{
+  width : 10%;
+  background-color : #fff;
+  margin: 0;
+  margin-bottom : 1%;
+  padding: 2% 2% 2% 2%;
+  font-size : 20px;
+  border-radius: 5px 5px 5px 5px;
+  box-shadow: 0 10px 30px 0 rgba(0,0,0,0.4);
+  border : solid;
+  border-color : #fff;
+}
+input[id=PWEB]:hover{
+  background-color : #fff;
+  transition-duration:0.6s;
+}
+input[id=Prog]:hover{
+  background-color : #fff;
+  transition-duration:0.6s;
+}
+
+input[id=PWEB]{
+  background-color : #96d25d;
+  border-color : #96d25d;
+  transition-duration:0.6s;
+}
+
+input[id=Prog]{
+  background-color : #f0aa52;
+  border-color : #f0aa52;
+  transition-duration:0.6s;
+}
+
+/* animation CSS */
+
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+.fadeIn {
+  opacity:0;
+  -webkit-animation:fadeIn ease-in 1;
+  -moz-animation:fadeIn ease-in 1;
+  animation:fadeIn ease-in 1;
+
+  -webkit-animation-fill-mode:forwards;
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+
+  -webkit-animation-duration:1s;
+  -moz-animation-duration:1s;
+  animation-duration:1s;
+}
+
+.fadeIn.first {
+  -webkit-animation-delay: 0.4s;
+  -moz-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+
+.fadeIn.second {
+  -webkit-animation-delay: 0.8s;
+  -moz-animation-delay: 0.8s;
+  animation-delay: 0.6s;
+}
+
+
+#centerDiv {
+  margin : 0 auto;
+  width: 100%;
+  text-align: center;
+  padding: 30px;
+}
+
+#boutonValide {
+  display:inline-block;
+  padding:5
+}
