@@ -7,7 +7,6 @@ function ident() {
 	$login=  isset($_POST['login'])?($_POST['login']):'';
 	$mdp =  isset($_POST['mdp'])?($_POST['mdp']):'';
 	$msg='';
-	
 
 	if  (count($_POST)==0)
               require ("./vue/utilisateur/ident.tpl") ;

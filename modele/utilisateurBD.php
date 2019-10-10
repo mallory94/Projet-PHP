@@ -6,14 +6,12 @@
 
 //require ("modele/connect.php") ; //connexion MYSQL et sélection de la base, $link défini
 
-function verif_ident_BD($login,$mdp){
-	session_start();
+function verif_ident_BD($login,$mdp){ 
 	require ("modele/connect.php") ; 
 	//global $pdo;
 	$_SESSION['roleCourant'] ="";
 	$sql="SELECT * FROM professeur where login_prof=:login";
-	$resultat= array();
-	$_SESSION['login'] = "" ; 
+	$resultat= array(); 
 	try {
 		$commande = $pdo->prepare($sql);
 		$commande->bindParam(':login', $login);
@@ -32,13 +30,11 @@ function verif_ident_BD($login,$mdp){
 					}
 					else if ($resultat[0]['pass_etu'] == $mdp) {
 						$_SESSION['roleCourant'] = "etudiant";
-						$_SESSION['login'] = $login;
 						return true;
 					}
 				}
 			}
 			else if ($resultat[0]['pass_prof'] == $mdp){
-				$_SESSION['login'] = $login;
 				$_SESSION['roleCourant'] = "professeur";
 				return true; 
 			}
@@ -46,7 +42,6 @@ function verif_ident_BD($login,$mdp){
 			var_dump($resultat);
 			die();
 		}
-
 	}
 	catch (PDOException $e) {
 		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
