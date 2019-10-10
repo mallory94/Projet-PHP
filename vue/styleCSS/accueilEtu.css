@@ -2,10 +2,13 @@ html {
   background-color: #929292;
 }
 
+
 body {
   font-family: "Poppins", sans-serif;
-  height: 100vh;
+   height: 100vh;
+  
   background-color: #929292;
+  margin : 0px;
 }
 
 a {
@@ -148,5 +151,9 @@ input[id=Prog]{
 
 #boutonValide {
   display:inline-block;
-  padding:5
+  padding:5;
+}
+
+.contenu {
+  padding-top: 60px;
 }
