@@ -32,21 +32,21 @@
 			 	<select name="listeTests">
 				 	<?php 
 				 		foreach($tests as $test){
-							echo '<option value="<?php echo $test[\'titre_test\']; ?>">' . $test['titre_test'] . '</option>';
+							echo ('<option value="' . $test['titre_test'] .'">' . $test['titre_test'] . '</option>');
 						} 
 					?>
 	  			 </select>
 	  			<br><br>
 
-	  			<!--<?php require("./controle/groupe.php"); $groupes = recupGroupe(); ?>
+	  			<?php require("./controle/groupe.php"); $groupes = recupGroupe(); ?>
 	  			<select name="listeGroupes">
 				 	<?php 
 				 		foreach($groupes as $groupe){ 
-							echo '<option value="">' . $groupe['num_grpe'] . '</option>';
+							echo ('<option value= "'. $groupe['num_grpe'] . '">' . $groupe['num_grpe'] . '</option>');
 						} 
 					?>
 	  			 </select>
-	  			 <br><br>-->
+	  			 <br><br>
 	  			<input type="submit">
 			</form>
 		</div>

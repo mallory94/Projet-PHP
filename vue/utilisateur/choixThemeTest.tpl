@@ -7,7 +7,7 @@
   <link href="./vue/bootstrap/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./vue/styleCSS/accueilProf.css">
 </head>
-	<!--<header>
+	<header>
 			<div id="logo">
 				<img src="./vue/images/logo-white.jpg">
 			</div>
@@ -16,19 +16,22 @@
 			</div>
 			<div id="userInfo">
 			<h2> Utilisateur : <?php printf('M. %s',$login); ?></h2>
-			<h3> 	Bienvenue
+			<!--<h3> 	Bienvenue
 							<?php 
 								printf ('M. %s, votre mot de passe est : %s et votre rôle est : %s', $login, $mdp, $_SESSION['roleCourant']);
 							?>
-			</h3>
+			</h3>-->
 			</div>
-	</header>-->
+	</header>
 
 	<body>
 		<div class="infos">
 			<h1>le test choisi est : <?php echo $test ?> </h1>
 			<br>
 			<h1>le groupe choisi est : <?php echo $groupe ?> </h1>
+			<br>
+			<h1>Voici les question du test <?php echo $test ?> </h1>
+
 		</div>
 	</body>
 

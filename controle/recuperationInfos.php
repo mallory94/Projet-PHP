@@ -1,7 +1,7 @@
 <?php 
 
 function validationChoix(){
-	var_dump($_POST);die();
+	
 	if (isset($_POST['listeTests'])){
 		$test = $_POST['listeTests'];
 	}
@@ -10,7 +10,7 @@ function validationChoix(){
 	}
 
 	if (isset($_POST['listeGroupes'])){
-		$test = $_POST['listeGroupes'];
+		$groupe = $_POST['listeGroupes'];
 	}
 
 	$login = $_SESSION['login'];
