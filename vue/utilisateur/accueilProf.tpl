@@ -26,16 +26,27 @@
 
 	<body>
 		<div class="contentPage">
-			<form method="post" action="">
-			 	<?php require("./controle/test.php"); $liste = remplissageListeTest(); ?>
-			 	<select name="liste des tests">
+			<!-- form qui va contenir la liste des tests et la liste des groupes -->
+			<form method="post" action="index.php?controle=recuperationInfos&action=validationChoix">
+				<?php require("./controle/test.php"); $tests = remplissageListeTest(); ?>
+			 	<select name="listeTests">
 				 	<?php 
-				 		foreach($liste as $test){ 
-							echo '<option value="">' . $test['titre_test'] . '</option>';
+				 		foreach($tests as $test){
+							echo '<option value="<?php echo $test[\'titre_test\']; ?>">' . $test['titre_test'] . '</option>';
 						} 
 					?>
 	  			 </select>
 	  			<br><br>
+
+	  			<!--<?php require("./controle/groupe.php"); $groupes = recupGroupe(); ?>
+	  			<select name="listeGroupes">
+				 	<?php 
+				 		foreach($groupes as $groupe){ 
+							echo '<option value="">' . $groupe['num_grpe'] . '</option>';
+						} 
+					?>
+	  			 </select>
+	  			 <br><br>-->
 	  			<input type="submit">
 			</form>
 		</div>
