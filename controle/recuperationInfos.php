@@ -5,9 +5,6 @@ function validationChoix(){
 	if (isset($_POST['listeTests'])){
 		$test = $_POST['listeTests'];
 	}
-	else{
-		echo "erreur";
-	}
 
 	if (isset($_POST['listeGroupes'])){
 		$groupe = $_POST['listeGroupes'];
@@ -15,9 +12,8 @@ function validationChoix(){
 
 	$login = $_SESSION['login'];
 
-	//$test =  isset($_POST['listeTests'])?($_POST['listeTests']):'';
-	//$groupe =  isset($_POST['listeGroupes'])?($_POST['listeGroupes']):'';
-	require("./vue/utilisateur/choixThemeTest.tpl");
+
+	require("./vue/utilisateur/questReponseProf.tpl");
 }
 
 ?>

@@ -27,28 +27,33 @@
 	<body>
 		<div class="contentPage">
 			<!-- form qui va contenir la liste des tests et la liste des groupes -->
+			<fieldset>
 			<form method="post" action="index.php?controle=recuperationInfos&action=validationChoix">
 				<?php require("./controle/test.php"); $tests = remplissageListeTest(); ?>
-			 	<select name="listeTests">
-				 	<?php 
-				 		foreach($tests as $test){
-							echo ('<option value="' . $test['titre_test'] .'">' . $test['titre_test'] . '</option>');
-						} 
-					?>
-	  			 </select>
-	  			<br><br>
 
-	  			<?php require("./controle/groupe.php"); $groupes = recupGroupe(); ?>
-	  			<select name="listeGroupes">
-				 	<?php 
-				 		foreach($groupes as $groupe){ 
-							echo ('<option value= "'. $groupe['num_grpe'] . '">' . $groupe['num_grpe'] . '</option>');
-						} 
-					?>
-	  			 </select>
-	  			 <br><br>
-	  			<input type="submit">
+				<div class="form-group">
+					<legend> Test </legend>
+				 	<select name="listeTests" class="select-css">
+					 	<?php 
+					 		foreach($tests as $test){
+								echo ('<option value="' . $test['titre_test'] .'">' . $test['titre_test'] . '</option>');
+							} 
+						?>
+		  			</select>
+		  			<br>
+		  			<legend> Groupe </legend>
+		  			<?php require("./controle/groupe.php"); $groupes = recupGroupe(); ?>
+		  			<select name="listeGroupes" class="select-css">
+					 	<?php 
+					 		foreach($groupes as $groupe){ 
+								echo ('<option value= "'. $groupe['num_grpe'] . '">' . $groupe['num_grpe'] . '</option>');
+							} 
+						?>
+		  			 </select>
+	  			<input type="submit" id="validation">
+	  		</div>
 			</form>
+		</fieldset>
 		</div>
 	</body>
 </html>

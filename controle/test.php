@@ -13,9 +13,13 @@ function remplissageListeTest(){
 	$resultat = recupTest($login);
 
 	return $resultat;
-	/*foreach($resultat as $test){
-		echo '<option value="">' . $test['titre_test'] . '</option>';
-	}*/
+	
+}
+
+function idTestChoisi(){
+	require('./modele/testBD.php');
+
+	return $resultat = idTestChoisiBD();
 }
 
 
