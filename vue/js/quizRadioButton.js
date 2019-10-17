@@ -8,23 +8,30 @@ $(function(){
     });
     
     $("label.btn").on('click',function () {
-    	var choice = $(this).find('input:radio').val();
-    	$('#loadbar').show();
-    	$('#quiz').fadeOut();
+        var choice = $(this).find('input:radio').val();
+        var parent = $(this).parent().parent();
+        var loadbar = parent.find('#loadbar');
+        var quizz = parent.find('#quiz');
+        var answer = parent.find("#answer");
+        console.log(quizz.show);
+        console.log(answer.show);
+        console.log(parent.find( "#answer" ));   
+
+        parent.parent().parent().find('#loadbar').show();
+    	parent.find('#quiz').fadeOut(); // le quizz disparait temporairement
+
     	setTimeout(function(){
-           $( "#answer" ).html(  $(this).checking(choice) );      
-            $('#quiz').show();
-            $('#loadbar').fadeOut();
+                quizz.show();
+                loadbar.fadeOut();
+                parent.find('#answer' ).html(  $(this).sayChoice(choice) );  
+                console.log(parent.find( "#answer" ));   
+        //     $('#quiz').show();
+        //     $('#loadbar').fadeOut();
            /* something else */
-    	}, 1500);
+    	}, 800);
     });
 
-    $ans = 3;
-
-    $.fn.checking = function(ck) {
-        if (ck != $ans)
-            return 'INCORRECT';
-        else 
-            return 'CORRECT';
+    $.fn.sayChoice = function(ck) {
+        return("Vous avez sélectionné la réponse "+ ck);
     }; 
 });	
