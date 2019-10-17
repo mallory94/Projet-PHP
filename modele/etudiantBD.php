@@ -43,6 +43,57 @@ function questionCouranteBD($indiceQuestion){
 	return $question;
 }
 
+function listeQuestionsBD($indiceTest){
+	require ("../modele/connect.php");
+	$sql = "SELECT DISTINCT q.* FROM qcm, question as q, test
+	WHERE qcm.id_test =:idTest
+	AND qcm.bAutorise = 1
+	AND qcm.bBloque = 0		
+	AND qcm.bAnnule = 0
+	AND q.id_quest = qcm.id_quest";
+	try {
+		$commande = $pdo->prepare($sql);
+		$commande->bindParam(':idTest', $indiceTEst);
+		$bool = $commande->execute();
+		if($bool){
+			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+			//var_dump($resultat);
+			return $resultat;
+		}
+		else{
+			return array();
+		}
+	}
+	catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+		die(); 
+	}
+
+}
+
+function listeReponsesBD($id_question){
+	require ("../modele/connect.php");
+	$sql = "SELECT * FROM reponse WHERE id_quest=:id_question";
+	try {
+		$commande = $pdo->prepare($sql);
+		$commande->bindParam(':id_question', $id_question);
+		$bool = $commande->execute();
+		if($bool){
+			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+			return $resultat;
+		}
+		else{
+			return array();
+		}
+	}
+	catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+		die(); 
+	}
+
+
+	return ;
+}
 
 
 ?>
