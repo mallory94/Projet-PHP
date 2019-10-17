@@ -1,6 +1,6 @@
 <?php
 
-function recupQuestReponseBD(){
+function recupQuestReponseBD($idtest){
 
 	require ("modele/connect.php") ; 
 
@@ -10,7 +10,7 @@ function recupQuestReponseBD(){
 
 	try{
 		$commande = $pdo->prepare($sql);
-		$commande->bindParam(':idtest', $_SESSION['idTest']);
+		$commande->bindParam(':idtest', $idtest);
 		$bool = $commande->execute();
 		
 		if($bool){

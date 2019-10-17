@@ -27,7 +27,7 @@ function recupTestBD($login){
 	}
 }
 
-function idTestChoisiBD(){
+function idTestBD($titre){
 
 	require ("modele/connect.php") ; 
 
@@ -36,7 +36,7 @@ function idTestChoisiBD(){
 
 	try{
 		$commande = $pdo->prepare($sql);
-		$commande->bindParam(':titre', $_POST['listeTests']);
+		$commande->bindParam(':titre', $titre);
 		$bool = $commande->execute();
 		
 		if($bool){
@@ -54,4 +54,3 @@ function idTestChoisiBD(){
 	}
 }
 
-?>

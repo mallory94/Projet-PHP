@@ -40,7 +40,14 @@ function accueil() {
 	$login = $_SESSION['login'];
 	$mdp = $_SESSION['mdp'];
 	if($_SESSION['roleCourant'] == "professeur"){
+		require("./controle/test.php");
+		//la liste des tests
+		$tests = recupTest($login);
+		require("./controle/groupe.php");
+		//la liste des groupes
+		$groupes = recupGroupe();
 		require ("./vue/utilisateur/accueilProf.tpl");
+		
 	} else if($_SESSION['roleCourant'] == "etudiant"){
 		require ("./vue/utilisateur/accueilEtu.tpl");
 	}

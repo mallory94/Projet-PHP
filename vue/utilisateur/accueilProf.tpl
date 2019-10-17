@@ -16,11 +16,6 @@
 			</div>
 			<div id="userInfo">
 			<h2> Utilisateur : <?php printf('M. %s',$login); ?></h2>
-			<!--<h3> 	Bienvenue
-							<?php 
-								printf ('M. %s, votre mot de passe est : %s et votre rôle est : %s', $login, $mdp, $_SESSION['roleCourant']);
-							?>
-			</h3>-->
 			</div>
 	</header>
 
@@ -28,9 +23,7 @@
 		<div class="contentPage">
 			<!-- form qui va contenir la liste des tests et la liste des groupes -->
 			<fieldset>
-			<form method="post" action="index.php?controle=recuperationInfos&action=validationChoix">
-				<?php require("./controle/test.php"); $tests = remplissageListeTest(); ?>
-
+			<form method="post" action="index.php?controle=questReponse&action=validationChoix">
 				<div class="form-group">
 					<legend> Test </legend>
 				 	<select name="listeTests" class="select-css">
@@ -42,7 +35,6 @@
 		  			</select>
 		  			<br>
 		  			<legend> Groupe </legend>
-		  			<?php require("./controle/groupe.php"); $groupes = recupGroupe(); ?>
 		  			<select name="listeGroupes" class="select-css">
 					 	<?php 
 					 		foreach($groupes as $groupe){ 
