@@ -7,7 +7,6 @@
 //require ("modele/connect.php") ; //connexion MYSQL et sélection de la base, $link défini
 
 function verif_ident_BD($login,$mdp){
-	session_start();
 	require ("modele/connect.php") ; 
 	//global $pdo;
 	$_SESSION['roleCourant'] ="";
@@ -42,9 +41,6 @@ function verif_ident_BD($login,$mdp){
 				$_SESSION['roleCourant'] = "professeur";
 				return true; 
 			}
-			
-			var_dump($resultat);
-			die();
 		}
 
 	}
