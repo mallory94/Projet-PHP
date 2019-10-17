@@ -13,6 +13,8 @@ $(function(){
         var loadbar = parent.find('#loadbar');
         var quizz = parent.find('#quiz');
         var answer = parent.find("#answer");
+        var btnCourant = this;
+
         console.log(quizz.show);
         console.log(answer.show);
         console.log(parent.find( "#answer" ));   
@@ -23,10 +25,8 @@ $(function(){
     	setTimeout(function(){
                 quizz.show();
                 loadbar.fadeOut();
-                parent.find('#answer' ).html(  $(this).sayChoice(choice) );  
-                console.log(parent.find( "#answer" ));   
-        //     $('#quiz').show();
-        //     $('#loadbar').fadeOut();
+                $(this).parent().parent().find('#answer' ).html(  $(this).sayChoice(choice) );  
+                console.log(parent.find( "#answer" ));
            /* something else */
     	}, 800);
     });
