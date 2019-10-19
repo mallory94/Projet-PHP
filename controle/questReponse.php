@@ -31,6 +31,18 @@ function validationChoix(){
 
 }
 
+//Creation de l'exception qui va catch une erreur de tableau
+set_error_handler('exceptionTableau');
+
+function exceptionTableau($severity, $message, $filename, $lineno) {
+  if (error_reporting() == 0) {
+    return;
+  }
+  if (error_reporting() & $severity) {
+    throw new ErrorException($message, 0, $severity, $filename, $lineno);
+  }
+}
+
 function accueilQuestionReponse(){
 	$login = $_SESSION['login'];
 

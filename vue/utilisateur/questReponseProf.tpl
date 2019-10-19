@@ -28,31 +28,37 @@
 			</div>
 			<form>
 				<div id="tab">
-					<table>
+				<table>
 				<?php
-					$question = $questReponses[0]['texte'];
-					$reponse = utf8_encode($questReponses[0]['texte_rep']);
-					$compteur = 1;
+					try{
+						$question = $questReponses[0]['texte'];
+						$reponse = utf8_encode($questReponses[0]['texte_rep']);
+						$compteur = 1;
 
-					echo ('<tr><td><input type="checkbox" id="' .$compteur. '" name="question" value="' .$question. '"></td>');
-					echo ('<td id="question" for="' .$compteur. '">' .$question. '</td>');
-					echo ('<td id="reponse">' . $reponse . ' </td>');
-					
-    				for ($compteur; $compteur < count($questReponses); $compteur++){
-						//on commence à partir de la 2eme ligne pour comparer avec celle d'avant
-						$question = $questReponses[$compteur]['texte'];
-						$reponse = utf8_encode($questReponses[$compteur]['texte_rep']);
+						echo ('<tr><td><input type="checkbox" id="' .$compteur. '" name="question" value="' .$question. '"></td>');
+						echo ('<td id="question" for="' .$compteur. '">' .$question. '</td>');
+						echo ('<td id="reponse">' . $reponse . ' </td>');
+						
+	    				for ($compteur; $compteur < count($questReponses); $compteur++){
+							//on commence à partir de la 2eme ligne pour comparer avec celle d'avant
+							$question = $questReponses[$compteur]['texte'];
+							$reponse = utf8_encode($questReponses[$compteur]['texte_rep']);
 
-						if ($question == $questReponses[$compteur - 1]['texte']){
-							echo ('<td id="reponse">' . $reponse . ' </td>');
+							if ($question == $questReponses[$compteur - 1]['texte']){
+								echo ('<td id="reponse">' . $reponse . ' </td>');
+							}
+							else{
+								echo ('</tr><tr><td><input type="checkbox" id="' .$compteur. '" name="question" value="' .$question. '"></td>');
+								echo ('<td id="question" for="' .$compteur. '">' .$question. '</label></td>');
+								echo ('<td id="reponse">' . $reponse . ' </td>');
+							}
 						}
-						else{
-							echo ('</tr><tr><td><input type="checkbox" id="' .$compteur. '" name="question" value="' .$question. '"></td>');
-							echo ('<td id="question" for="' .$compteur. '">' .$question. '</label></td>');
-							echo ('<td id="reponse">' . $reponse . ' </td>');
-						}
+					echo('</tr>');
+					}		
+					catch (Exception $e) {
+						echo utf8_encode("Vous avez choisi un test contenant aucune questions ! \n");
+						die(); 
 					}
-					echo('</tr>')
 				?>
 				</table>
 				</div>
