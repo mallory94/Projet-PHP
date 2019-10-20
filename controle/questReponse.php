@@ -15,9 +15,10 @@ function recupIdTest(){
 	return $resultat;
 }
 
-
+//affichage des questions et réponses
 function validationChoix(){
-	
+	require("./modele/testBD.php");
+
 	if (isset($_POST['listeTests'])){
 		$_SESSION['test'] = $_POST['listeTests'];
 	}
@@ -26,9 +27,29 @@ function validationChoix(){
 		$_SESSION['groupe'] = $_POST['listeGroupes'];
 	}
 
+	$_SESSION['idtest'] = idTestBD($_POST['listeTests']);
+
 	$url = "index.php?controle=questReponse&action=accueilQuestionReponse";
 	header ("Location:" .$url) ;
 
+}
+
+//fonction qui actualise les questions dans un test donné apres validation du formulaire
+function updateApresValidation(){
+	require("./modele/questReponseBD.php");
+	require("./modele/testBD.php");
+
+	foreach($_POST as $val){
+		
+		$idquestion = recupIdQuestionBD($val)[0]['id_quest'];
+		$idtest = ($_SESSION['idtest'])[0]['id_test'];
+
+		updateQuestionsValideBD($idquestion, $idtest);
+	}
+
+	//retour à l'accueil du prof
+	$url = "index.php?controle=utilisateur&action=accueil";
+	header ("Location:" .$url) ;
 }
 
 //Creation de l'exception qui va catch une erreur de tableau

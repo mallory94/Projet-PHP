@@ -28,4 +28,59 @@ function recupQuestReponseBD($idtest){
 	}
 }
 
+function recupIdQuestionBD($texteQuest){
+
+	require ("modele/connect.php") ; 
+
+	$sql="SELECT id_quest FROM question WHERE texte =:nomQuest";
+
+	$resultat= array();
+
+	try{
+		$commande = $pdo->prepare($sql);
+		$commande->bindParam(':nomQuest', $texteQuest);
+		$bool = $commande->execute();
+		
+		if($bool){
+			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+			return $resultat;
+		}
+		else{
+			return array();
+		}
+
+	}
+	catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+		die(); 
+	}
+}
+function updateQuestionsValideBD($idquestion, $idtest){
+
+	require ("modele/connect.php") ; 
+
+	$sql="UPDATE qcm SET bAutorise = 1 WHERE id_quest =:quest AND id_test =:test";
+
+	$resultat= array();
+
+	try{
+		$commande = $pdo->prepare($sql);
+		$commande->bindParam(':quest', $idquestion);
+		$commande->bindParam(':test', $idtest);
+		$bool = $commande->execute();
+		
+		if($bool){
+			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+			return $resultat;
+		}
+		else{
+			return array();
+		}
+
+	}
+	catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+		die(); 
+	}
+}
 ?>

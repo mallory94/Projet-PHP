@@ -26,7 +26,7 @@
 				<h1 id="test"><?php echo $test ?> </h1>
 				<h1 id="groupe"><?php echo $groupe ?> </h1>
 			</div>
-			<form>
+			<form method="post" action="index.php?controle=questReponse&action=updateApresValidation">
 				<div id="tab">
 				<table>
 				<?php
@@ -65,8 +65,8 @@
   				<div>
     				<input id="validation" type="submit"></input>
   				</div>
-			</form></div>
-
+			</form>
+			</div>
 		</div>
 	</body>
 
