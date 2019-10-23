@@ -34,12 +34,14 @@
 			</div>
 	</header>
 
-	<body>
+   <body> <?php $nbQuestion = sizeof($listeQuestions);
+   for($compteur = 0; $compteur < $nbQuestion ; $compteur++) {
+   echo('
 	<div class="container-fluid contenu">
    <div class="modal-dialog">
       <div class="modal-content">
          <div class="modal-header">
-            <h3><span class="label label-warning" id="qid">n°question</span>    $enoncé</h3>
+            <h3><span class="label label-warning" id="qid">n°question '. number_format($compteur+1) . "</span>" . utf8_encode($listeQuestions[$compteur]['texte']) . '</h3>
          </div>
          <div class="modal-body">
             <div class="col-xs-3 col-xs-offset-5">
@@ -54,51 +56,20 @@
                   <div class="blockG" id="rotateG_08"></div>
                </div>
             </div>
-            <div class="quiz" id="quiz" data-toggle="buttons">
-               <label class="element-animation1 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="checkbox" checked autocomplete="off" name="q_answer" value="1">réponse 1</label>
-               <label class="element-animation2 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="checkbox" checked autocomplete="off" name="q_answer" value="2">réponse 2</label>
-               <label class="element-animation3 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="checkbox" checked autocomplete="off" name="q_answer" value="3">réponse 3</label>
-               <label class="element-animation4 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="checkbox" checked autocomplete="off" name="q_answer" value="4">réponse 4</label>
-            </div>
+            <div class="quiz" id="quiz" data-toggle="buttons">');
+            foreach ($listeReponses[$compteur] as $reponsesDeLaQuestion) {
+               echo('<label class="element-animation1 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="checkbox" checked autocomplete="off" name="q_answer" value="' . $reponsesDeLaQuestion['id_rep']. "\">"  . utf8_encode($reponsesDeLaQuestion['texte_rep']) . '</label>');
+            }
+            echo('</div>
          </div>
          <div class="modal-footer text-muted">
             <span id="answer"></span>
          </div>
       </div>
-      </div>
-      
+      </div>');
+      }
 
-
-      <!-- <div class="modal-dialog">
-      <div class="modal-content">
-         <div class="modal-header">
-            <h3><span class="label label-warning" id="qid">n°question</span>    $enoncé</h3>
-         </div>
-         <div class="modal-body">
-            <div class="col-xs-3 col-xs-offset-5">
-               <div id="loadbar" style="display: none;">
-                  <div class="blockG" id="rotateG_01"></div>
-                  <div class="blockG" id="rotateG_02"></div>
-                  <div class="blockG" id="rotateG_03"></div>
-                  <div class="blockG" id="rotateG_04"></div>
-                  <div class="blockG" id="rotateG_05"></div>
-                  <div class="blockG" id="rotateG_06"></div>
-                  <div class="blockG" id="rotateG_07"></div>
-                  <div class="blockG" id="rotateG_08"></div>
-               </div>
-            </div>
-            <div class="quiz" id="quiz" data-toggle="buttons">
-               <label class="element-animation1 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="checkbox" checked autocomplete="off" name="q_answer" value="1">réponse 1</label>
-                <label class="element-animation2 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="checkbox"  checked autocomplete="off" name="q_answer" value="2">réponse 2</label>
-               <label class="element-animation3 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="checkbox" checked autocomplete="off" name="q_answer" value="3">réponse 3</label>
-               <label class="element-animation4 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="checkbox" checked autocomplete="off" name="q_answer" value="4">réponse 4</label>
-            </div>
-         </div>
-         <div class="modal-footer text-muted">
-            <span id="answer"></span>
-         </div>
-      </div>
-   	</div> -->
+   ?>
 	</div>
 	</body>
    <script src="../vue/js/quizRadioButton.js"></script>

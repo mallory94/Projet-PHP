@@ -36,11 +36,11 @@
 				  "Test 3 : J'ai plus d'inspi", "Test 4 : Pour une cause juste, seriez vous capable de manger vos morts?" );
 				 ?>
 				 
-			 	<div id ="centerDiv"><select name="indiceTest">
+			 	<div id ="centerDiv"><select name="idTestChoisi">
 					 <?php
 					 	$compteur = 0;
 					 	foreach($_SESSION['listeTestDispo'] as $titre){
-							echo ('<option value="'. $compteur .'">' . $titre['titre_test'] . '</option>');
+							echo ('<option value="'. $titre['id_test'] .'">' . $titre['titre_test'] . '</option>');
 							$compteur++;
 						}
 					?>
