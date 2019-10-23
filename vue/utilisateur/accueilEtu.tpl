@@ -27,6 +27,7 @@
 	<body>
 		<div class="contentPage">
 			<form method="post" action="./controle/testEtudiant.php">
+				<div class="form-group">
 				 <?php 
 				 
 				 require("./controle/etudiant.php");
@@ -36,7 +37,7 @@
 				  "Test 3 : J'ai plus d'inspi", "Test 4 : Pour une cause juste, seriez vous capable de manger vos morts?" );
 				 ?>
 				 
-			 	<div id ="centerDiv"><select name="idTestChoisi">
+			 	<div id ="centerDiv"><select name="idTestChoisi" class="select-css">
 					 <?php
 					 	$compteur = 0;
 					 	foreach($_SESSION['listeTestDispo'] as $titre){
@@ -46,7 +47,8 @@
 					?>
 	  			 </select>
 	  			<br><br>
-	  			<input type="submit" id="boutonValide"></div>
+				  <input type="submit" id="validation"></div>
+				</div>
 			</form>
 		</div>
 	</body>
