@@ -10,18 +10,18 @@ function commencerTest(){
     session_start();
     require_once ("../modele/etudiantBD.php");
     $_SESSION['idTestChoisi'] = $_POST['idTestChoisi'];
-    var_dump($_SESSION['idTestChoisi']);
+    //var_dump($_SESSION['idTestChoisi']);
     $_SESION['indiceQuestion'] = 0;
     $titreTest = getTitreTest($_SESSION['idTestChoisi']);
     $listeQuestions = listeQuestions($_SESSION['idTestChoisi']);
     //boucle for each qui recup toutes les réponses à toutes les questions du test : tableau de tableau.
     //foreach($listeQuestion) 
-    var_dump($listeQuestions);
+    //var_dump($listeQuestions);
     $listeReponses = array();
     foreach ($listeQuestions as $question) {
         array_push ($listeReponses,listeReponses($question['id_quest']));
     }
-    var_dump($listeReponses);
+    //var_dump($listeReponses);
     require ("../vue/utilisateur/repondreEtu.tpl");
 }
 

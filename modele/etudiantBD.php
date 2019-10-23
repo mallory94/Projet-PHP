@@ -46,7 +46,7 @@ function getTitreTestBD($id_test){
 		
 		if($bool){
 			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
-			var_dump($resultat);
+			//var_dump($resultat);
 			return $resultat;
 		}
 		else{
