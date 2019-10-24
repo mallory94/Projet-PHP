@@ -41,7 +41,7 @@
    <div class="modal-dialog">
       <div class="modal-content">
          <div class="modal-header">
-            <h3><span class="label label-warning" id="qid">n°question '. number_format($compteur+1) . "</span> <span class=\"titreQuestion\">" . utf8_encode($listeQuestions[$compteur]['texte']) . '</span></h3>
+            <h3><span class="label label-warning" id="'. $listeQuestions[$compteur]['id_quest'] .'">n°question '. number_format($compteur+1) . "</span> <span class=\"titreQuestion\">" . utf8_encode($listeQuestions[$compteur]['texte']) . '</span></h3>
          </div>
          <div class="modal-body">
             <div class="col-xs-3 col-xs-offset-5">
