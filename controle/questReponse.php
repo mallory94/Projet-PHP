@@ -36,14 +36,17 @@ function validationChoix(){
 
 //fonction qui actualise les questions dans un test donné apres validation du formulaire
 function updateApresValidation(){
-	require("./modele/questReponseBD.php");
-	require("./modele/testBD.php");
-
+	require_once ("./modele/questReponseBD.php");
+	require_once ("./modele/testBD.php");
+	
+	$idtest = $_SESSION['idtest'][0]['id_test'];
 	foreach($_POST as $val){
 		
 		$idquestion = recupIdQuestionBD($val)[0]['id_quest'];
-		$idtest = ($_SESSION['idtest'])[0]['id_test'];
-
+		
+		
+		
+		
 		updateQuestionsValideBD($idquestion, $idtest);
 	}
 
