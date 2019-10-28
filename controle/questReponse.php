@@ -1,14 +1,21 @@
 <?php
 
-function recupQuestReponse(){
-	require('./modele/questReponseBD.php');
+function recupQuestReponseDansTest(){
+	require_once('./modele/questReponseBD.php');
 	$idtest = recupIdTest();
-	$resultat = recupQuestReponseBD($idtest);
+	$resultat = recupQuestReponseDansTestBD($idtest);
+	return $resultat;
+}
+
+function recupQuestReponsePasDansTest(){
+	require_once('./modele/questReponseBD.php');
+	$idtest = recupIdTest();
+	$resultat = recupQuestReponsePasDansTestBD($idtest);
 	return $resultat;
 }
 
 function recupIdTest(){
-	require("./modele/testBD.php");
+	require_once("./modele/testBD.php");
 
 	//l'id du test
 	$resultat = idTestBD($_SESSION['test'])[0]['id_test'];
@@ -35,25 +42,44 @@ function validationChoix(){
 }
 
 //fonction qui actualise les questions dans un test donné apres validation du formulaire
-function updateApresValidation(){
+function updateQuestionDansTest(){
 	require_once ("./modele/questReponseBD.php");
 	require_once ("./modele/testBD.php");
 	
 	$idtest = $_SESSION['idtest'][0]['id_test'];
-	foreach($_POST as $val){
-		
+
+	/*for($i = 0; $i < count($_POST['question']); $i++){
+		$idquestion = recupIdQuestionBD($_POST['question'])[0]['id_quest'];
+		updateQuestionsDansTestBD($idquestion, $idtest);
+	}*/
+
+	foreach($_POST['question'] as $val){
 		$idquestion = recupIdQuestionBD($val)[0]['id_quest'];
-		
-		
-		
-		
-		updateQuestionsValideBD($idquestion, $idtest);
+		updateQuestionsDansTestBD($idquestion, $idtest);
 	}
 
 	//retour à l'accueil du prof
-	$url = "index.php?controle=utilisateur&action=accueil";
+	$url = "index.php?controle=questReponse&action=accueilQuestionReponse";
 	header ("Location:" .$url) ;
 }
+
+function updateQuestionPasDansTest(){
+	require_once ("./modele/questReponseBD.php");
+	require_once ("./modele/testBD.php");
+	
+	$idtest = $_SESSION['idtest'][0]['id_test'];
+
+	foreach($_POST['question'] as $val){
+		
+		$idquestion = recupIdQuestionBD($val)[0]['id_quest'];
+		updateQuestionsPasDansTestBD($idquestion, $idtest);
+	}
+
+	//retour à l'accueil du prof
+	$url = "index.php?controle=questReponse&action=accueilQuestionReponse";
+	header ("Location:" .$url) ;
+}
+
 
 //Creation de l'exception qui va catch une erreur de tableau
 set_error_handler('exceptionTableau');
@@ -74,8 +100,12 @@ function accueilQuestionReponse(){
 	$test = $_SESSION['test'];
 	//le groupe choisi
 	$groupe = $_SESSION['groupe'];
+	//Les questions et réponses déjà présentent d'un un test
+	$questReponsesDansTest = recupQuestReponseDansTest();
+	//Les questions et réponses qui ne sont pas dans le test
+	$questReponsesPasDansTest = recupQuestReponsePasDansTest();
 
-	$questReponses = recupQuestReponse();
+	//var_dump($questReponsesDansTest);die();
 	require('./vue/utilisateur/questReponseProf.tpl');
 }
 

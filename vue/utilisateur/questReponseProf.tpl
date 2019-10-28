@@ -26,29 +26,29 @@
 				<h1 id="test"><?php echo $test ?> </h1>
 				<h1 id="groupe"><?php echo $groupe ?> </h1>
 			</div>
-			<form method="post" action="index.php?controle=questReponse&action=updateApresValidation">
+			<form method="post" action="index.php?controle=questReponse&action=updateQuestionPasDansTest">
 				<div id="tab">
+				<p>Voici les questions que vous pouvez ajouter dans le test :</p>
 				<table>
 				<?php
 					try{
-						$question = $questReponses[0]['texte'];
-						$reponse = utf8_encode($questReponses[0]['texte_rep']);
+						$question = utf8_encode($questReponsesPasDansTest[0]['texte']);
+						$reponse = utf8_encode($questReponsesPasDansTest[0]['texte_rep']);
 						$compteur = 1;
-
-						echo ('<tr><td><input type="checkbox" id="' .$compteur. '" name="question" value="' .$question. '"></td>');
+						echo ('<tr><td><input type="checkbox" id="' .$compteur. '" name="question[]" value="' .$question. '"></td>');
 						echo ('<td id="question" for="' .$compteur. '">' .$question. '</td>');
 						echo ('<td id="reponse">' . $reponse . ' </td>');
 						
-	    				for ($compteur; $compteur < count($questReponses); $compteur++){
+	    				for ($compteur; $compteur < count($questReponsesPasDansTest); $compteur++){
 							//on commence à partir de la 2eme ligne pour comparer avec celle d'avant
-							$question = $questReponses[$compteur]['texte'];
-							$reponse = utf8_encode($questReponses[$compteur]['texte_rep']);
+							$question = utf8_encode($questReponsesPasDansTest[$compteur]['texte']);
+							$reponse = utf8_encode($questReponsesPasDansTest[$compteur]['texte_rep']);
 
-							if ($question == $questReponses[$compteur - 1]['texte']){
+							if ($question == utf8_encode($questReponsesPasDansTest[$compteur - 1]['texte'])){
 								echo ('<td id="reponse">' . $reponse . ' </td>');
 							}
 							else{
-								echo ('</tr><tr><td><input type="checkbox" id="' .$compteur. '" name="question" value="' .$question. '"></td>');
+								echo ('</tr><tr><td><input type="checkbox" id="' .$compteur. '" name="question[]" value="' .$question. '"></td>');
 								echo ('<td id="question" for="' .$compteur. '">' .$question. '</label></td>');
 								echo ('<td id="reponse">' . $reponse . ' </td>');
 							}
@@ -56,12 +56,56 @@
 					echo('</tr>');
 					}		
 					catch (Exception $e) {
-						echo utf8_encode("Vous avez choisi un test contenant aucune questions ! \n");
+						echo "Toutes les questions disponibles sont déjà dans le test, Veuillez en créer de nouvelles !\n";
 						die(); 
 					}
 				?>
 				</table>
 				</div>
+
+				<div>
+    				<input id="validation" type="submit"></input>
+  				</div>
+			</form>
+
+			<form method="post" action="index.php?controle=questReponse&action=updateQuestionDansTest">
+				<p>Voici les questions que vous pouvez retirer du test :</p>
+				<div id="tab">
+				<table>
+				<?php
+					try{
+						$question = utf8_encode($questReponsesDansTest[0]['texte']);
+						$reponse = utf8_encode($questReponsesDansTest[0]['texte_rep']);
+						$compteur = 1;
+
+						echo ('<tr><td><input type="checkbox" id="' .$compteur. '" name="question[]" value="' .$question. '"></td>');
+						echo ('<td id="question" for="' .$compteur. '">' .$question. '</td>');
+						echo ('<td id="reponse">' . $reponse . ' </td>');
+						
+	    				for ($compteur; $compteur < count($questReponsesDansTest); $compteur++){
+							//on commence à partir de la 2eme ligne pour comparer avec celle d'avant
+							$question = utf8_encode($questReponsesDansTest[$compteur]['texte']);
+							$reponse = utf8_encode($questReponsesDansTest[$compteur]['texte_rep']);
+
+							if ($question == utf8_encode($questReponsesDansTest[$compteur - 1]['texte'])){
+								echo ('<td id="reponse">' . $reponse . ' </td>');
+							}
+							else{
+								echo ('</tr><tr><td><input type="checkbox" id="' .$compteur. '" name="question[]" value="' .$question. '"></td>');
+								echo ('<td id="question" for="' .$compteur. '">' .$question. '</label></td>');
+								echo ('<td id="reponse">' . $reponse . ' </td>');
+							}
+						}
+					echo('</tr>');
+					}		
+					catch (Exception $e) {
+						echo "Il n'y a encore aucune question dans ce test ! \n";
+						die(); 
+					}
+				?>
+				</table>
+				</div>
+
   				<div>
     				<input id="validation" type="submit"></input>
   				</div>
