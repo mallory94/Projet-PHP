@@ -22,7 +22,21 @@ function recupIdTest(){
 	return $resultat;
 }
 
-//affichage des questions et réponses
+function notes(){
+	require('./modele/noteBD.php');
+	$idtest = recupIdTest();
+	$resultat = notesBD($idtest);
+	return $resultat;
+}
+
+function noms(){
+	require('./modele/etudiantBD.php');
+	$idtest = recupIdTest();
+	$resultat = nomsBD($idtest);
+	return $resultat;
+}
+
+//affichage des questions et réponses ou du bilan
 function validationChoix(){
 	require("./modele/testBD.php");
 
@@ -36,7 +50,14 @@ function validationChoix(){
 
 	$_SESSION['idtest'] = idTestBD($_POST['listeTests']);
 
-	$url = "index.php?controle=questReponse&action=accueilQuestionReponse";
+	//L'utilisateur à cliquer sur le bouton validation
+	if (isset($_POST['validation'])){
+		$url = "index.php?controle=questReponse&action=accueilQuestionReponse";
+	}
+	elseif (isset($_POST['bilan'])){
+		$url = "index.php?controle=questReponse&action=accueilBilan";
+	}
+	
 	header ("Location:" .$url) ;
 
 }
@@ -109,4 +130,30 @@ function accueilQuestionReponse(){
 	require('./vue/utilisateur/questReponseProf.tpl');
 }
 
+function accueilBilan(){
+	$login = $_SESSION['login'];
+
+	//le nom du test
+	$test = $_SESSION['test'];
+	//le groupe choisi
+	$groupe = $_SESSION['groupe'];
+	//Les notes des élèves 
+	$notes = notes();
+	//Le nom des élèves
+	$noms = noms();
+	//moyenne du groupe
+	if(!empty($notes)){
+		$resultat = 0;
+		foreach($notes as $note){
+			$resultat = $resultat + $note['note_test'];
+		}
+		$moyenne = $resultat/(count($notes));
+	}
+	else{
+		$moyenne = 0;
+	}
+	
+
+	require('./vue/utilisateur/BilanProf.tpl');
+}
 ?>
