@@ -1,0 +1,25 @@
+.btn.btn-primary.disabled {
+    background-color: #000000;
+    border-color: #161616;
+}
+
+.reponseJuste.btn-primary.disabled{
+    background-color: #27ce17;
+    border-color: #1fa313;
+}
+
+.reponseSelectionnee.btn-primary.disabled {
+    background-color: #ff2c2c;
+    border-color: #ff0000;
+}
+
+.phraseTransiton {
+    text-align: center;
+    font-size: 30px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.bilan{
+    background-color:white;
+}

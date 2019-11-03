@@ -3,7 +3,7 @@
 
 <head>
    <meta charset="utf-8">
-   <title>Accueil</title>
+   <title>Questions</title>
    <script type="text/javascript" src="../vue/js/jquery-3.4.1.min.js"></script>
    <link href="../vue/bootstrap/bootstrap.min.css" rel="stylesheet">
    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">

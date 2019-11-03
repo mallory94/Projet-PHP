@@ -32,7 +32,7 @@ function listeTestDispoBD(){
 
 
 function getTitreTestBD($id_test){
-	require_once ("../modele/connect.php"); 
+	require ("../modele/connect.php"); 
 
     $sql = "SELECT t.titre_test from test as t WHERE t.id_test=:idTest";
     
@@ -157,7 +157,7 @@ function verifRepBD($id_rep){
 		$bool = $commande->execute();
 		if($bool){
 			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
-			var_dump($resultat[0]['COUNT(*)']);
+			//var_dump($resultat[0]['COUNT(*)']);
 			if (strcmp($resultat[0]['COUNT(*)'],"1") == 0) {
 				return(true);
 			}
@@ -181,7 +181,7 @@ function nbRepValidesBD($id_quest){
 		$bool = $commande->execute();
 		if($bool){
 			$resultat = $commande->fetchALL(PDO::FETCH_ASSOC);
-			var_dump($resultat[0]['COUNT(*)']);
+			//var_dump($resultat[0]['COUNT(*)']);
 			return($resultat[0]['COUNT(*)']);
 		}
 	}
@@ -216,7 +216,7 @@ function aDejaFaitLeTestBD($id_etu, $id_test){
 		$bool = $commande->execute();
 		if($bool){
 			$resultat = $commande->fetchALL(PDO::FETCH_ASSOC);
-			var_dump($resultat[0]['COUNT(*)']);
+			//var_dump($resultat[0]['COUNT(*)']);
 			if ($resultat[0]['COUNT(*)'] == 0) {
 				return false;
 			}
