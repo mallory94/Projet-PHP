@@ -1,8 +1,7 @@
 <?php
 
 function listeTestDispoBD(){
-
-	require ("modele/connect.php") ; 
+	require_once ("modele/connect.php") ; 
 
     $sql = "SELECT t.titre_test, t.id_test from test as t, etudiant as e 
     WHERE t.num_grpe = e.num_grpe
@@ -33,7 +32,7 @@ function listeTestDispoBD(){
 
 
 function getTitreTestBD($id_test){
-	require ("../modele/connect.php"); 
+	require_once ("../modele/connect.php"); 
 
     $sql = "SELECT t.titre_test from test as t WHERE t.id_test=:idTest";
     
@@ -121,6 +120,116 @@ function listeReponsesBD($id_question){
 	}
 	return ;
 }
+
+function creerResultatBD($id_test, $id_etu, $id_quest, $id_rep){
+	require ("../modele/connect.php");
+	$sql = 'INSERT INTO resultat (id_test, id_etu, id_quest, date_res, id_rep) VALUES
+	( ? , ? , ? , CURDATE(), ? )';
+	try {
+		$commande = $pdo->prepare($sql);
+		$bool = $commande->execute(array($id_test, $id_etu , $id_quest, $id_rep));
+		var_dump($bool);
+		// if($bool){
+		// 	$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+		// 	var_dump(utf8_encore($resultat));
+		// 	var_dump($resultat);
+		// 	return $resultat;
+		// }
+		// else{
+		// 	return array();
+		// }
+	}
+	catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+		die();
+	}
+	return ;
+
+}
+
+
+function verifRepBD($id_rep){
+	require ("../modele/connect.php");
+	$sql = 'SELECT COUNT(*) FROM reponse WHERE id_rep=:idRep AND bvalide = 1';
+	try {
+		$commande = $pdo->prepare($sql);
+		$commande->bindParam(':idRep', $id_rep);
+		$bool = $commande->execute();
+		if($bool){
+			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+			var_dump($resultat[0]['COUNT(*)']);
+			if (strcmp($resultat[0]['COUNT(*)'],"1") == 0) {
+				return(true);
+			}
+			else
+				return(false);
+		}
+	}
+	catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+		die(); 
+	}
+}
+
+//renvoit le nombre de réponses à selectionner pour avoir tout bon à une question
+function nbRepValidesBD($id_quest){
+	require ("../modele/connect.php");
+	$sql = 'SELECT COUNT(*) FROM reponse WHERE id_quest=:idQuest AND bvalide = 1';
+	try {
+		$commande = $pdo->prepare($sql);
+		$commande->bindParam(':idQuest', $id_quest);
+		$bool = $commande->execute();
+		if($bool){
+			$resultat = $commande->fetchALL(PDO::FETCH_ASSOC);
+			var_dump($resultat[0]['COUNT(*)']);
+			return($resultat[0]['COUNT(*)']);
+		}
+	}
+	catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+		die(); 
+	}
+}
+
+
+function enregistrerBilanBD($id_test, $id_etu, $note) {
+	require ("../modele/connect.php");
+	$sql = "INSERT INTO bilan ( id_test, id_etu, note_test, date_bilan)
+	VALUES (? , ? , ? , CURDATE())";
+	try {
+		$commande = $pdo->prepare($sql);
+		$commande->execute(array($id_test, $id_etu , $note));
+	}
+	catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+		die(); 
+	};
+}
+
+function aDejaFaitLeTestBD($id_etu, $id_test){
+	require ("../modele/connect.php");
+	$sql = 'SELECT COUNT(*) FROM bilan WHERE id_etu=:idEtu AND id_test=:idTest';
+	try {
+		$commande = $pdo->prepare($sql);
+		$commande->bindParam(':idEtu', $id_etu);
+		$commande->bindParam(':idTest', $id_test);
+		$bool = $commande->execute();
+		if($bool){
+			$resultat = $commande->fetchALL(PDO::FETCH_ASSOC);
+			var_dump($resultat[0]['COUNT(*)']);
+			if ($resultat[0]['COUNT(*)'] == 0) {
+				return false;
+			}
+			else
+				return(true);
+		}
+	}
+	catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+		die(); 
+	}
+}
+
 
 
 ?>

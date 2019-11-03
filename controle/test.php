@@ -2,13 +2,13 @@
 
 //appelé dans accueil() dans utilisateur.php
 function recupTest($login){
-	require ('./modele/testBD.php');
+	require_once ('./modele/testBD.php');
 	$tests = recupTestBD($login);
 	return $tests;
 }
 
 function idTestChoisi(){
-	require('./modele/testBD.php');
+	require_once ('./modele/testBD.php');
 
 	return $resultat = idTestChoisiBD();
 }

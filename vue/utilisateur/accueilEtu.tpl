@@ -18,31 +18,23 @@
 			<h2> Utilisateur : <?php printf('M. %s',$_SESSION['login']); ?></h2>
 			<!--<h3> 	Bienvenue
 							<?php 
-								printf ('M. %s, votre mot de passe est : %s et votre rôle est : %s', $_SESSION['login'], $mdp, $_SESSION['roleCourant']);
+								printf ('M. %s, votre mot de passe est : %s et votre rôle est : %s', 
+								$_SESSION['login'], $mdp, $_SESSION['roleCourant']);
 							?>
 			</h3>-->
 			</div>
 	</header>
 
 	<body>
-		<div class="contentPage">
+		<div class="contentPage contentAccueil">
 			<form method="post" action="./controle/testEtudiant.php">
 				<div class="form-group">
-				 <?php 
-				 
-				 require("./controle/etudiant.php");
-				 $_SESSION['listeTestDispo'] = listeTestsDipo();
-				 $liste_test = array( "Test 1 : Comment faire des raquettes AisseCouelle?", 
-				 "Test 2 : Le présent, c'est le moment où le futur devient le présent.",
-				  "Test 3 : J'ai plus d'inspi", "Test 4 : Pour une cause juste, seriez vous capable de manger vos morts?" );
-				 ?>
-				 
 			 	<div id ="centerDiv"><select name="idTestChoisi" class="select-css">
 					 <?php
-					 	$compteur = 0;
+					 	//$compteur = 0;
 					 	foreach($_SESSION['listeTestDispo'] as $titre){
 							echo ('<option value="'. $titre['id_test'] .'">' . $titre['titre_test'] . '</option>');
-							$compteur++;
+							//$compteur++;
 						}
 					?>
 	  			 </select>

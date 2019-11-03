@@ -32,6 +32,7 @@ function verif_ident_BD($login,$mdp){
 					else if ($resultat[0]['pass_etu'] == $mdp) {
 						$_SESSION['roleCourant'] = "etudiant";
 						$_SESSION['login'] = $login;
+						$_SESSION['id_etu'] = $resultat[0]['id_etu'];
 						return true;
 					}
 				}

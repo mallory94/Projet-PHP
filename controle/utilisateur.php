@@ -49,6 +49,8 @@ function accueil() {
 		require ("./vue/utilisateur/accueilProf.tpl");
 		
 	} else if($_SESSION['roleCourant'] == "etudiant"){
+		require("./controle/etudiant.php");
+		$_SESSION['listeTestDispo'] = listeTestsDipo();
 		require ("./vue/utilisateur/accueilEtu.tpl");
 	}
 }

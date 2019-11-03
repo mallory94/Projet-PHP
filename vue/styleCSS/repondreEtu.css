@@ -6,4 +6,30 @@
     .contenu {
         padding-top: 250px;
     }
-  }
+    #titre{
+        padding-left: 5%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #titre {
+        padding-left: 0%;
+    }
+}
+
+#centerDiv{
+    
+}
+
+#centerDiv>button{
+    width: 300px;
+    border-radius: 17px 17px 17px 17px;
+    -moz-border-radius: 17px 17px 17px 17px;
+    -webkit-border-radius: 17px 17px 17px 17px;
+    border: 0px solid #000000;
+    background-color: white;
+}
+
+#validation{
+    margin : 20px;
+}
