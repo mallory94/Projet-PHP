@@ -221,6 +221,29 @@ function aDejaFaitLeTestBD($id_etu, $id_test){
 	}
 }
 
+function nomsBD($idtest){
+	require ("./modele/connect.php");
 
+	$sql = "SELECT e.nom FROM bilan as b, etudiant as e WHERE b.id_etu = e.id_etu AND b.id_test =:test AND e.num_grpe =:groupe";
+
+	try {
+		$commande = $pdo->prepare($sql);
+		$commande->bindParam(':test', $idtest);
+        $commande->bindParam(':groupe', $_SESSION['groupe']);
+		$bool = $commande->execute();
+
+		if($bool){
+			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+			return $resultat;
+		}
+		else{
+			return array();
+		}
+	}
+	catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+		die(); 
+	}
+}
 
 ?>
