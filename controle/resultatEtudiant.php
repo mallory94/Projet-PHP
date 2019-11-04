@@ -1,15 +1,12 @@
 <?php 
 session_start();
 require_once ("./etudiant.php");
-// var_dump("hello");
-// var_dump(listeQuestions($_SESSION['idTestChoisi']));
-// var_dump($_POST);    print_r($_POST);
 
 $compteurQuestionsReussies = 0;
 $nbQuestion = sizeof(listeQuestions($_SESSION['idTestChoisi']));
 $listeQuestResultat = array(); //contient les id des questions ainsi que si elles sont réussies ou non
 // var_dump($nbQuestion);
-// var_dump($_POST['q_answer']);
+//var_dump($_POST['q_answer']);
 foreach ($_POST['q_answer'] as $key=>$value) {
     $nbRepValides = nbRepValides($key);
     // var_dump($nbRepValides);
@@ -51,17 +48,22 @@ foreach($listeReponses as $reponse) {
     
 }
 
-function repEstSelectionnee($id_quest, $indiceRep, $id_rep) {
-    $bSelectionnee = false;
+function repEstSelectionnee($id_quest, $id_rep) {
+    $tailleTableau = sizeof($_POST['q_answer'][$id_quest]);
+    //var_dump($tailleTableau);
     try {
-        if (isset($_POST['q_answer'][$id_quest][$indiceRep])) {
-            $bSelectionnee = true;
+        //var_dump($id_rep);
+        for ($i = 0; $i <= $tailleTableau-1; $i++) {
+            //var_dump($_POST['q_answer'][$id_quest]);
+            if (strcmp($_POST['q_answer'][$id_quest][$i],$id_rep) == 0) {
+                return true;
+            }
         }
     }
     catch (Exception $e) {
         echo("Blindax!");
     }
-    return $bSelectionnee;
+    return false;
 }
 
 require ("../vue/utilisateur/bilanEtudiant.tpl")

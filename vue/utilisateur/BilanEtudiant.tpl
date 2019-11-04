@@ -72,15 +72,15 @@
                         </div>
                      </div>
                      <div class="quiz" id="quiz" data-toggle="buttons">');
-            $compteurReponse = 0;
+            //var_dump($listeReponses);
             foreach ($listeReponses[$compteur] as $reponsesDeLaQuestion) {
                
                $reponse = "";
-               if (repEstSelectionnee($listeQuestions[$compteur]['id_quest'],$compteurReponse,$reponsesDeLaQuestion['id_rep']) == true) {
+               //var_dump($reponsesDeLaQuestion['id_rep']);
+               if (repEstSelectionnee($listeQuestions[$compteur]['id_quest'],$reponsesDeLaQuestion['id_rep']) == true) {
                   $reponse = "reponseSelectionnee";
                }
                echo ('<label class="element-animation1 btn disabled btn-lg btn-primary btn-block ' . $reponse . ' " ><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="checkbox" autocomplete="off" name="q_answer[' . $reponsesDeLaQuestion['id_quest'] . '][]" disabled="true" value="" id="' . $reponsesDeLaQuestion['id_rep'] ."\">"  . utf8_encode($reponsesDeLaQuestion['texte_rep']) . '</label>');
-               $compteurReponse++;
             }
             echo ('</div></div>');
          }
@@ -107,18 +107,14 @@
                      </div>
                      <div class="quiz" id="quiz" data-toggle="buttons">
                   ');
-         $compteurReponse = 0;
          foreach ($listeReponses[$compteur] as $reponsesDeLaQuestion) {
             $reponseJuste = "";
             // var_dump($listeQuestions[$compteur]);
             if ($reponsesDeLaQuestion['bvalide'] == 1) {
                $reponseJuste= "reponseJuste";
             }
-            // if (strcmp($listeReponses[$compteur][$compteurReponse]['bvalide'],"1") == 0) {
-            //    $reponseJuste = "reponseJuste";
-            // }
+            
             echo ('<label class="element-animation1 btn disabled btn-lg btn-primary btn-block ' . $reponseJuste . ' " ><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="checkbox" autocomplete="off" name="q_answer[' . $reponsesDeLaQuestion['id_quest'] . '][]" disabled="true" value="" id="' . $reponsesDeLaQuestion['id_rep'] ."\">"  . utf8_encode($reponsesDeLaQuestion['texte_rep']) . '</label>'); 
-            $compteurReponse++;
          }
          echo('</div></div>
          <div class="modal-footer text-muted">
@@ -128,12 +124,15 @@
          </div>');
       }
       ?>
-      <!-- <div id="centerDiv"><button><input type="submit" id="validation"></button></div> -->
       </div>
    </form>
    <script src="../vue/js/putValueCheckbox.js"></script>
-   <div class="bilan">
+   <div class="bilan col-xs-3 col-xs-offset-5">
+      Vous avez eu 
+      <?php echo($note . "/20.");
       
+      echo("<br>Vous avez répondu à " . sizeof($_POST['q_answser']) . " questions sur " . sizeof($listeQuestions));
+      ?>
    </div>
 
 </body>
