@@ -29,7 +29,7 @@ foreach ($_POST['q_answer'] as $key=>$value) {
 }
 //var_dump($compteurQuestionsReussies);
 //var_dump($listeQuestResultat);
-$note = $compteurQuestionsReussies * (20/$nbQuestion);
+$note = $compteurQuestionsReussies * (100/$nbQuestion);
 //var_dump($note);
 if (aDejaFaitLeTest($_SESSION['id_etu'], $_SESSION['idTestChoisi']) == false) {
     enregistrerBilan( $_SESSION['idTestChoisi'], $_SESSION['id_etu'], $note);
@@ -48,23 +48,17 @@ foreach($listeReponses as $reponse) {
     
 }
 
-function repEstSelectionnee($id_quest, $id_rep) {
-    $tailleTableau = sizeof($_POST['q_answer'][$id_quest]);
-    //var_dump($tailleTableau);
-    try {
-        //var_dump($id_rep);
-        for ($i = 0; $i <= $tailleTableau-1; $i++) {
-            //var_dump($_POST['q_answer'][$id_quest]);
-            if (strcmp($_POST['q_answer'][$id_quest][$i],$id_rep) == 0) {
-                return true;
-            }
-        }
-    }
-    catch (Exception $e) {
-        echo("Blindax!");
-    }
-    return false;
-}
+$nbQuestionRepondues = sizeof($_POST['q_answer']);
+$nbQuestionTotal = sizeof($listeQuestions);
+//var_dump($listeQuestions);
+
+
+
+// $reponsesSelectionnee = array();
+// for ($y = 0; $y <= $nbQuestionTotal-1; $y++) {
+//     $reponsesSelectionnee = array_merge($reponsesSelectionnee, array($listeQuestions[$y]['id_quest'] => repEstSelectionnee($listeQuestions[$y]['id_quest'])))
+// }
+
 
 require ("../vue/utilisateur/bilanEtudiant.tpl")
 
