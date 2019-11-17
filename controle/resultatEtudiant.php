@@ -7,26 +7,47 @@ $nbQuestion = sizeof(listeQuestions($_SESSION['idTestChoisi']));
 $listeQuestResultat = array(); //contient les id des questions ainsi que si elles sont réussies ou non
 // var_dump($nbQuestion);
 //var_dump($_POST['q_answer']);
-foreach ($_POST['q_answer'] as $key=>$value) {
-    $nbRepValides = nbRepValides($key);
-    // var_dump($nbRepValides);
-    $questionReussie = true;
-    // var_dump($key);
-    $compteurReponsesDonnees = 0;
-    foreach ($value as $idReponse) {
-        // var_dump($idReponse);
-        //creerResultatBD($_SESSION['idTestChoisi'] , $_SESSION['id_etu'], $key, $idReponse);
-        if (verifRep($idReponse) == false) {
-            $questionReussie = false;
+//var_dump(isset($_POST['q_answer']));
+
+
+if (isset($_POST['q_answer'])) {
+    /* compte le nombre de question réussie sur l'ensemble du test
+    */
+    foreach ($_POST['q_answer'] as $key=>$value) {
+        $nbRepValides = nbRepValides($key);
+        // var_dump($nbRepValides);
+        $questionReussie = true;
+        // var_dump($key);
+        $compteurReponsesDonnees = 0;
+        foreach ($value as $idReponse) {
+            // var_dump($idReponse);
+            //creerResultatBD($_SESSION['idTestChoisi'] , $_SESSION['id_etu'], $key, $idReponse);
+            if (verifRep($idReponse) == false) {
+                $questionReussie = false;
+            }
+            $compteurReponsesDonnees++; 
         }
-        $compteurReponsesDonnees++; 
+        $listeQuestResultat[$key] = $questionReussie;
+        // var_dump($questionReussie);
+        if ($questionReussie == true && $compteurReponsesDonnees == $nbRepValides) {
+            $compteurQuestionsReussies++;
+        }
     }
-    $listeQuestResultat[$key] = $questionReussie;
-    // var_dump($questionReussie);
-    if ($questionReussie == true && $compteurReponsesDonnees == $nbRepValides) {
-        $compteurQuestionsReussies++;
-    }
+    $nbQuestionRepondues = sizeof($_POST['q_answer']);
+    // var_dump($_SESSION['listeQuestions']);
+    // var_dump($_POST['q_answer']);
 }
+else {
+    $compteurQuestionsReussies = 0;
+    $nbQuestionRepondues = 0;
+    //var_dump($_SESSION['listeQuestions']);
+    foreach($_SESSION['listeQuestions'] as $quest) {
+        //var_dump($quest);
+        $listeQuestResultat[$quest['id_quest']] = false;
+    }
+    
+}
+
 //var_dump($compteurQuestionsReussies);
 //var_dump($listeQuestResultat);
 $note = $compteurQuestionsReussies * (100/$nbQuestion);
@@ -48,7 +69,6 @@ foreach($listeReponses as $reponse) {
     
 }
 
-$nbQuestionRepondues = sizeof($_POST['q_answer']);
 $nbQuestionTotal = sizeof($listeQuestions);
 //var_dump($listeQuestions);
 
@@ -60,6 +80,6 @@ $nbQuestionTotal = sizeof($listeQuestions);
 // }
 
 
-require ("../vue/utilisateur/bilanEtudiant.tpl")
+require ("../vue/utilisateur/bilanEtudiant.tpl");
 
 ?>

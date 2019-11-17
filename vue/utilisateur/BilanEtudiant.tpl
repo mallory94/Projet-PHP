@@ -51,18 +51,21 @@
       <?php 
 
       function repEstSelectionnee($id_quest, $id_rep) {
-         $tailleTableau = sizeof($_POST['q_answer'][$id_quest]);
-         //var_dump($tailleTableau);
-         try {
-            //var_dump($id_rep);
-            for ($i = 0; $i <= $tailleTableau-1; $i++) {
-               //var_dump($_POST['q_answer'][$id_quest]);
-               if (strcmp($_POST['q_answer'][$id_quest][$i],$id_rep) == 0) {
-                     return true;
+
+         if (isset($_POST['q_answer'][$id_quest])){
+            try {
+               
+               $tailleTableau = sizeof($_POST['q_answer'][$id_quest]);
+               //var_dump($id_rep);
+               for ($i = 0; $i <= $tailleTableau-1; $i++) {
+                  //var_dump($_POST['q_answer'][$id_quest]);
+                  if (strcmp($_POST['q_answer'][$id_quest][$i],$id_rep) == 0) {
+                        return true;
+                  }
                }
             }
-         }
-         catch (Exception $e) {
+            catch (Exception $e) {
+            }
          }
          return false;
       }
@@ -73,8 +76,12 @@
       $listeQuestionsBis = $listeQuestions;
       $questionReponses = array();
       for ($compteur = 0; $compteur < $nbQuestion; $compteur++) {
-         $questionReussie = $listeQuestResultat[$listeQuestions[$compteur]['id_quest']]; //boolean indiquant si cette question a été réussie par l'étudiant
-         
+         //var_dump($listeQuestResultat);
+         if(isset($listeQuestResultat[$listeQuestions[$compteur]['id_quest']])) {
+            $questionReussie = $listeQuestResultat[$listeQuestions[$compteur]['id_quest']]; //boolean indiquant si cette question a été réussie par l'étudiant
+         }
+         else
+            $questionReussie = false;
          echo ('
             <div class="container-fluid contenu">
             <div class="modal-dialog">
