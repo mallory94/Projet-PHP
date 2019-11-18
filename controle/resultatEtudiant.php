@@ -82,7 +82,7 @@ $nbQuestionTotal = sizeof($listeQuestions);
 
 
 
-$moyenne = getMoyenne($_SESSION['idTestChoisi']);
+$moyenne = (float) getMoyenne($_SESSION['idTestChoisi']);
 
 
 

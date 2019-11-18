@@ -246,4 +246,21 @@ function nomsBD($idtest){
 	}
 }
 
+
+function setBConnectBD($login, $boolean){
+	require ("../modele/connect.php");
+	$sql = "UPDATE etudiant SET bConnect =:val
+	WHERE etudiant.login_etu=:loginEtu";
+
+	try {
+		$commande = $pdo->prepare($sql);
+		$commande->bindParam(':val', $boolean);
+        $commande->bindParam(':loginEtu', $login);
+		$bool = $commande->execute();	
+	}
+	catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+		die();
+	}
+}
 ?>

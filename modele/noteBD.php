@@ -39,7 +39,7 @@ function getMoyenneBD($idtest){
 	try{
 		$commande = $pdo->prepare($sql);
 		$commande->bindParam(':test', $idtest);
-		var_dump( $_SESSION['num_grpe']);
+		//var_dump( $_SESSION['num_grpe']);
         $commande->bindParam(':groupe', $_SESSION['num_grpe']);
 		$bool = $commande->execute();
 

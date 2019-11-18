@@ -9,6 +9,7 @@ function listeTestsDipo(){
 function commencerTest(){
     session_start();
     require_once ("../modele/etudiantBD.php");
+    setBConnect($_SESSION['login'],1);
     $_SESSION['idTestChoisi'] = $_POST['idTestChoisi'];
     $_SESION['indiceQuestion'] = 0;
     $titreTest = getTitreTest($_SESSION['idTestChoisi']);
@@ -66,7 +67,13 @@ function enregistrerBilan( $id_test, $id_etu, $note){
 }
 
 function aDejaFaitLeTest($id_etu, $id_test){
+    require_once ("../modele/etudiantBD.php");
 	return (aDejaFaitLeTestBD($id_etu, $id_test));
+}
+
+function setBConnect($login, $boolean){
+    require_once ("../modele/etudiantBD.php");
+    setBConnectBD($login,$boolean);
 }
 
 ?>
