@@ -33,6 +33,7 @@ function verif_ident_BD($login,$mdp){
 						$_SESSION['roleCourant'] = "etudiant";
 						$_SESSION['login'] = $login;
 						$_SESSION['id_etu'] = $resultat[0]['id_etu'];
+						$_SESSION['num_grpe'] = $resultat[0]['num_grpe'];
 						return true;
 					}
 				}

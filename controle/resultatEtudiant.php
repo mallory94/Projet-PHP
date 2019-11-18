@@ -83,7 +83,7 @@ $nbQuestionTotal = sizeof($listeQuestions);
 
 
 $moyenne = getMoyenne($_SESSION['idTestChoisi']);
-var_dump($moyenne);
+
 
 
 require ("../vue/utilisateur/bilanEtudiant.tpl");

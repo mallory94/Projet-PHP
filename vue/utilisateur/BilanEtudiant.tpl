@@ -41,7 +41,7 @@
       Vous avez reçu la note de  
       <?php echo('' . $note . "/100 autrement dit ". $note/5 . "/20");
       
-      echo("<br>en répondant à " . $nbQuestionRepondues . " questions sur " . $nbQuestionTotal);
+      echo("<br>en répondant à " . $nbQuestionRepondues . " questions sur " . $nbQuestionTotal. "<br>La moyenne de votre groupe est de ". $moyenne);
       ?>
    </div>
    </div>
@@ -71,7 +71,7 @@
       }
 
 
-
+      var_dump($moyenne);
       $nbQuestion = sizeof($listeQuestions);
       $listeQuestionsBis = $listeQuestions;
       $questionReponses = array();
