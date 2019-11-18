@@ -42,8 +42,8 @@
 							} 
 						?>
 		  			 </select>
-	  			<input type="submit" name="validation" value="Validation">
-	  			<input type="submit" name="bilan" value="Bilan">
+	  			<input type="submit" name="validation" value="Modifier Test" id=validation>
+	  			<input type="submit" name="bilan" value="Bilan" id=validation>
 	  		</div>
 			</form>
 		</fieldset>

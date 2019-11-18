@@ -122,6 +122,10 @@ legend{
   border-radius: 5px 5px 5px 5px;
 }
 
+.contantPage #tab #upperTab{
+  background-color : #830143;
+}
+
 .contentPage #tab td{
   background-color : #fff;
   border : solid;
@@ -140,9 +144,6 @@ legend{
   color : #fff;
 }
 
-.contentPage #tab tp{
-
-}
 
 
 
@@ -169,8 +170,3 @@ input[id="validation"]:hover{
   color : #830143;
   transition-duration: 0.8s;
 }
-
-
-
-
-

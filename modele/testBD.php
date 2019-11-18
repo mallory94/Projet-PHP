@@ -54,3 +54,28 @@ function idTestBD($titre){
 	}
 }
 
+// function getMoyenneBD($id_test){
+// 	require ("modele/connect.php");
+// 	$sql="SELECT AVG() FROM test  WHERE titre_test =:titre";
+	
+
+// 	try{
+// 		$commande = $pdo->prepare($sql);
+// 		$commande->bindParam(':titre', $titre);
+// 		$bool = $commande->execute();
+		
+// 		if($bool){
+// 			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+// 			return $resultat;
+// 		}
+// 		else{
+// 			return array();
+// 		}
+
+// 	}
+// 	catch (PDOException $e) {
+// 		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+// 		die(); 
+// 	} 
+// }
+

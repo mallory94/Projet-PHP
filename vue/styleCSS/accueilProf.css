@@ -150,6 +150,7 @@ input[id="validation"] {
   width : 50%;
   padding : 5px 10px 5px 10px;
   margin-top : 5%;
+  font-style : bold;
 }
 
 input[id="validation"]:hover{

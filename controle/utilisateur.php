@@ -18,7 +18,7 @@ function ident() {
 	        $msg ="Erreur : Login / Mot de passe incorrect";
 	        require ("./vue/utilisateur/ident.tpl") ;
 		}
-	    else { 
+	    else {
 			$_SESSION['login'] = $login;
 			$_SESSION['mdp'] = $mdp;
 			$url = "index.php?controle=utilisateur&action=accueil";

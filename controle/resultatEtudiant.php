@@ -1,6 +1,7 @@
 <?php 
 session_start();
 require_once ("./etudiant.php");
+require_once ("./test.php");
 
 $compteurQuestionsReussies = 0;
 $nbQuestion = sizeof(listeQuestions($_SESSION['idTestChoisi']));
@@ -78,6 +79,11 @@ $nbQuestionTotal = sizeof($listeQuestions);
 // for ($y = 0; $y <= $nbQuestionTotal-1; $y++) {
 //     $reponsesSelectionnee = array_merge($reponsesSelectionnee, array($listeQuestions[$y]['id_quest'] => repEstSelectionnee($listeQuestions[$y]['id_quest'])))
 // }
+
+
+
+$moyenne = getMoyenne($_SESSION['idTestChoisi']);
+var_dump($moyenne);
 
 
 require ("../vue/utilisateur/bilanEtudiant.tpl");

@@ -242,7 +242,7 @@ function nomsBD($idtest){
 	}
 	catch (PDOException $e) {
 		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
-		die(); 
+		die();
 	}
 }
 

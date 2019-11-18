@@ -13,4 +13,10 @@ function idTestChoisi(){
 	return $resultat = idTestChoisiBD();
 }
 
+function getMoyenne($id_test) {
+	require_once ('../modele/noteBD.php');
+	
+	return(getMoyenneBD($id_test));
+}
+
 ?>
