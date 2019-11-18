@@ -36,52 +36,17 @@
 </header>
 
 <body>
-   <div id="centerDiv2">
-   <div class="bilan">
-      Vous avez reçu la note de  
-      <?php echo('' . $note . "/100 autrement dit ". $note/5 . "/20");
-      
-      echo("<br>en répondant à " . $nbQuestionRepondues . " questions sur " . $nbQuestionTotal);
-      ?>
-   </div>
-   </div>
-
-   <form>
-   
-      <?php 
-
-      function repEstSelectionnee($id_quest, $id_rep) {
-
-         if (isset($_POST['q_answer'][$id_quest])){
-            try {
-               
-               $tailleTableau = sizeof($_POST['q_answer'][$id_quest]);
-               //var_dump($id_rep);
-               for ($i = 0; $i <= $tailleTableau-1; $i++) {
-                  //var_dump($_POST['q_answer'][$id_quest]);
-                  if (strcmp($_POST['q_answer'][$id_quest][$i],$id_rep) == 0) {
-                        return true;
-                  }
-               }
-            }
-            catch (Exception $e) {
-            }
-         }
-         return false;
-      }
+    
 
 
 
-      $nbQuestion = sizeof($listeQuestions);
+   <form action="resultatEtudiant.php" method="post">
+      <?php $nbQuestion = sizeof($listeQuestions);
       $listeQuestionsBis = $listeQuestions;
       $questionReponses = array();
       for ($compteur = 0; $compteur < $nbQuestion; $compteur++) {
-         //var_dump($listeQuestResultat);
-         if(isset($listeQuestResultat[$listeQuestions[$compteur]['id_quest']])) {
-            $questionReussie = $listeQuestResultat[$listeQuestions[$compteur]['id_quest']]; //boolean indiquant si cette question a été réussie par l'étudiant
-         }
-         else
-            $questionReussie = false;
+         $questionReussie = $listeQuestResultat[$listeQuestions[$compteur]['id_quest']]; //boolean indiquant si cette question a été réussie par l'étudiant
+         
          echo ('
             <div class="container-fluid contenu">
             <div class="modal-dialog">
@@ -162,7 +127,13 @@
       </div>
    </form>
    <script src="../vue/js/putValueCheckbox.js"></script>
-   
+   <div class="bilan col-xs-3 col-xs-offset-5">
+      Vous avez eu 
+      <?php echo($note . "/20.");
+      
+      echo("<br>Vous avez répondu à " . sizeof($_POST['q_answser']) . " questions sur " . sizeof($listeQuestions));
+      ?>
+   </div>
 
 </body>
 <script src="../vue/js/quizRadioButton.js"></script>

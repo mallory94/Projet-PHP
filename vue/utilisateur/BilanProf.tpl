@@ -5,7 +5,7 @@
 	  <meta charset="utf-8">
 	  <title>Bilan</title>
 	  <link href="./vue/bootstrap/bootstrap.min.css" rel="stylesheet">
-	  <link rel="stylesheet" href="./vue/styleCSS/accueilProf.css">
+	  <link rel="stylesheet" href="./vue/styleCSS/bilanProf.css">
 	</head>
 
 	<header>
@@ -21,27 +21,36 @@
 	</header>
 
 	<body>
-		<br><br><br><br><br>
-		<table>
-		  <tr>
-		    <td>NOM ETUDIANT</td>
-		    <td>NOTE</td>
-		  </tr>
-	      <?php
+		<div class="contentPage">
+			<div class="form-group">
+				<div id="infoSelected">
+					<h1 id="test"><?php echo $test ?> </h1>
+					<h1 id="groupe"><?php echo $groupe ?> </h1>
+					<h1 id="groupe">Bilan du groupe</h1>
+				</div>
+			<div id="tab"><table>
+			  <tr>
+			    <td id="question">NOM ETUDIANT</td>
+			    <td id="question">NOTE</td>
+			  </tr>
+		      <?php
 
-	      	for($i = 0; $i < count($noms); $i++){
-	      		$nomAffiche = ($noms[$i])['nom'];
+		      	for($i = 0; $i < count($noms); $i++){
+		      		$nomAffiche = ($noms[$i])['nom'];
 
-	      		$noteAffiche = ($notes[$i])['note_test'];
+		      		$noteAffiche = ($notes[$i])['note_test'];
 
-	      		echo ('<tr>');
-	    		echo ('<td>' .$nomAffiche. '</td>');
-	    		echo ('<td>' .$noteAffiche. '</td>');
-	    		echo('</tr>');
-	     	}
-	      ?>
-		</table>
-		<br>
-		<p>La moyenne du groupe est : <?php echo $moyenne ?></p>
+		      		echo ('<tr>');
+		    		echo ('<td id="reponse">' .$nomAffiche. '</td>');
+		    		echo ('<td id="reponse">' .$noteAffiche. '</td>');
+		    		echo('</tr>');
+		     	}
+		      ?>
+			</table>
+		</div>
+			<br>
+			<p>La moyenne du groupe est : <?php echo $moyenne ?></p>
+		</div>
+		</div>
 	</body>
 </html>
