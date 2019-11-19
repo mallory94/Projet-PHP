@@ -113,6 +113,89 @@ function updateQuestionsDansTestBD($idquestion, $idtest){
 	}
 }
 
+function questionBloquée($idtest){
+	require ("modele/connect.php") ; 
+
+	$sql="SELECT bBloque FROM qcm WHERE id_test =:test AND bAutorise = 1";
+
+	$resultat= array();
+
+	try{
+		$commande = $pdo->prepare($sql);
+		$commande->bindParam(':test', $idtest);
+		$bool = $commande->execute();
+		
+		if($bool){
+			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+			return $resultat;
+		}
+		else{
+			return array();
+		}
+
+	}
+	catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+		die(); 
+	}
+}
+
+function bloquerQuestionsBD($idquestion,$idtest){
+	require ("modele/connect.php") ; 
+
+	$sql="UPDATE qcm SET bBloque = 1 WHERE id_quest =:quest AND id_test =:test";
+
+	$resultat= array();
+
+	try{
+		$commande = $pdo->prepare($sql);
+		$commande->bindParam(':quest', $idquestion);
+		$commande->bindParam(':test', $idtest);
+		$bool = $commande->execute();
+		
+		if($bool){
+			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+			return $resultat;
+		}
+		else{
+			return array();
+		}
+
+	}
+	catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+		die(); 
+	}
+}
+
+function debloquerQuestionsBD($idquestion,$idtest){
+	require ("modele/connect.php") ; 
+
+	$sql="UPDATE qcm SET bBloque = 0 WHERE id_quest =:quest AND id_test =:test";
+
+	$resultat= array();
+
+	try{
+		$commande = $pdo->prepare($sql);
+		$commande->bindParam(':quest', $idquestion);
+		$commande->bindParam(':test', $idtest);
+		$bool = $commande->execute();
+		
+		if($bool){
+			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+			return $resultat;
+		}
+		else{
+			return array();
+		}
+
+	}
+	catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+		die(); 
+	}
+}
+
 function updateQuestionsPasDansTestBD($idquestion, $idtest){
 
 	require ("modele/connect.php") ; 

@@ -263,4 +263,52 @@ function setBConnectBD($login, $boolean){
 		die();
 	}
 }
+
+function etudiantConnecteBD(){
+	require ("./modele/connect.php");
+
+	$sql = "SELECT nom FROM etudiant WHERE num_grpe =:groupe AND bConnect = 1";
+
+	try {
+		$commande = $pdo->prepare($sql);
+        $commande->bindParam(':groupe', $_SESSION['groupe']);
+		$bool = $commande->execute();
+
+		if($bool){
+			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+			return $resultat;
+		}
+		else{
+			return array();
+		}
+	}
+	catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+		die(); 
+	}
+}
+
+function listeEtudiantBD(){
+	require ("./modele/connect.php");
+
+	$sql = "SELECT nom FROM etudiant WHERE num_grpe =:groupe";
+
+	try {
+		$commande = $pdo->prepare($sql);
+        $commande->bindParam(':groupe', $_SESSION['groupe']);
+		$bool = $commande->execute();
+
+		if($bool){
+			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+			return $resultat;
+		}
+		else{
+			return array();
+		}
+	}
+	catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+		die(); 
+	}
+}
 ?>
