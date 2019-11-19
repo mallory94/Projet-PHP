@@ -259,7 +259,6 @@ select {
 
 .contentAccueil {
   padding-top: 180px;
-  
 }
 
 @media screen and (max-width: 1080px) {
@@ -269,7 +268,7 @@ select {
 }
 
 body{
-  height: fit-content*2;
+  height: auto;
   background: rgb(133,6,71);
   background: linear-gradient(90deg, rgba(133,6,71,1) 0%, rgba(255,255,255,1) 51%, rgba(133,6,71,1) 100%);
 }

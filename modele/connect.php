@@ -8,9 +8,9 @@
 
 
 	$hostname = "localhost";	
-	$base="pweb19_gack";
-	$loginBD= "pweb19_gack";	
-	$passBD="x07011999";
+	$base="ProjetPHP";
+	$loginBD= "root";	
+	$passBD="";
 	$pdo = null;
 
 
