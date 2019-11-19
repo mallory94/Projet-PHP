@@ -266,3 +266,9 @@ select {
     max-width : 100%;
   }
 }
+
+body{
+  height: auto;
+  background: rgb(133,6,71);
+  background: linear-gradient(90deg, rgba(133,6,71,1) 0%, rgba(255,255,255,1) 51%, rgba(133,6,71,1) 100%);
+}

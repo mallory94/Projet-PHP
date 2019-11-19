@@ -41,10 +41,10 @@
       Vous avez reçu la note de  
       <?php echo('' . $note . "/100 autrement dit ". $note/5 . "/20");
       
-      echo("<br>en répondant à " . $nbQuestionRepondues . " questions sur " . $nbQuestionTotal. "<br>La moyenne de votre groupe est de ". $moyenne . "/100");
+      echo("<br>en répondant à " . $nbQuestionRepondues . " questions sur " . $nbQuestionTotal. "<br><br>La moyenne de votre groupe est de ". $moyenne . "/100");
       ?>
    <form action="/Projet-PHP-GIT-3/controle/finEtudiant.php" method="post">
-    <input type="submit" id="envoyer" name="envoyer" value="test">
+    <input class="btnDeconnection" type="submit" id="envoyer" name="envoyer" value="se déconnecter">
    <form>   
    </div>
    </div>

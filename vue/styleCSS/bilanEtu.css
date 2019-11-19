@@ -45,3 +45,25 @@
 
 }
 
+input.btnDeconnection {
+    width: fit-content;
+    margin-top: 40px;
+    /* background-color : #850647; */
+    background: rgb(133,6,71);
+background: radial-gradient(circle, rgba(133,6,71,1) 0%, rgba(156,104,130,1) 100%);
+    color:white;
+}
+
+input.btnDeconnection:hover {
+    background : white;
+    /* color:#830143; */
+    color:rgb(133,6,71);
+    border-color: rgb(112, 62, 87);
+}
+
+body{
+    height:auto;
+    background: rgb(133,6,71);
+    background: linear-gradient(90deg, rgba(133,6,71,1) 0%, rgba(255,255,255,1) 51%, rgba(133,6,71,1) 100%);
+}
+
