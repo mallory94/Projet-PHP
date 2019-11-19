@@ -43,7 +43,8 @@
       
       echo("<br>en répondant à " . $nbQuestionRepondues . " questions sur " . $nbQuestionTotal. "<br><br>La moyenne de votre groupe est de ". $moyenne . "/100");
       ?>
-   <form action="/Projet-PHP-GIT-3/controle/finEtudiant.php" method="post">
+      
+   <form action=<?php echo($_SERVER['PHP_SELF']. "/../finEtudiant.php")?> method="post">
     <input class="btnDeconnection" type="submit" id="envoyer" name="envoyer" value="se déconnecter">
    <form>   
    </div>
