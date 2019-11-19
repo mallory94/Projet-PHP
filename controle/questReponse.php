@@ -7,6 +7,13 @@ function recupQuestReponseDansTest(){
 	return $resultat;
 }
 
+function recupQuestBloqueOuPas(){
+	require_once('./modele/questReponseBD.php');
+	$idtest = recupIdTest();
+	$resultat = questionBloquée($idtest);
+	return $resultat;
+}
+
 function recupQuestReponsePasDansTest(){
 	require_once('./modele/questReponseBD.php');
 	$idtest = recupIdTest();
@@ -30,10 +37,35 @@ function notes(){
 }
 
 function noms(){
-	require('./modele/etudiantBD.php');
+	require_once('./modele/etudiantBD.php');
 	$idtest = recupIdTest();
 	$resultat = nomsBD($idtest);
 	return $resultat;
+}
+
+function nbEtuConnecte(){
+	require_once('./modele/etudiantBD.php');
+	$resultat = etudiantConnecteBD();
+
+	$cpt = 0;
+
+	foreach($resultat as $etu){
+		$cpt++;
+	}
+	return $cpt;
+}
+
+function nbListeEtudiant(){
+	
+	$resultat = listeEtudiantBD();
+
+	$cpt = 0;
+	
+	foreach($resultat as $etu){
+		$cpt++;
+	}
+
+	return $cpt;
 }
 
 //affichage des questions et réponses ou du bilan
@@ -69,17 +101,29 @@ function updateQuestionDansTest(){
 	
 	$idtest = $_SESSION['idtest'][0]['id_test'];
 
-	/*for($i = 0; $i < count($_POST['question']); $i++){
-		$idquestion = recupIdQuestionBD($_POST['question'])[0]['id_quest'];
-		updateQuestionsDansTestBD($idquestion, $idtest);
-	}*/
-
-	foreach($_POST['question'] as $val){
-		$idquestion = recupIdQuestionBD($val)[0]['id_quest'];
-		updateQuestionsDansTestBD($idquestion, $idtest);
+	
+	if(isset($_POST['validation'])){
+		foreach($_POST['question'] as $val){
+			$idquestion = recupIdQuestionBD($val)[0]['id_quest'];
+			updateQuestionsDansTestBD($idquestion, $idtest);
+		}
 	}
 
-	//retour à l'accueil du prof
+	elseif(isset($_POST['bloquer'])){
+		foreach($_POST['question'] as $val){
+			$idquestion = recupIdQuestionBD($val)[0]['id_quest'];
+			bloquerQuestionsBD($idquestion,$idtest);
+		}
+	}
+
+	elseif(isset($_POST['debloquer'])){
+		foreach($_POST['question'] as $val){
+			$idquestion = recupIdQuestionBD($val)[0]['id_quest'];
+			debloquerQuestionsBD($idquestion,$idtest);
+		}
+	}
+
+	//on actualise
 	$url = "index.php?controle=questReponse&action=accueilQuestionReponse";
 	header ("Location:" .$url) ;
 }
@@ -125,9 +169,16 @@ function accueilQuestionReponse(){
 	$questReponsesDansTest = recupQuestReponseDansTest();
 	//Les questions et réponses qui ne sont pas dans le test
 	$questReponsesPasDansTest = recupQuestReponsePasDansTest();
-
+	//Info sur les questions si elle sont bloquées ou pas
+	$infoBloque = recupQuestBloqueOuPas();
 	//var_dump($questReponsesDansTest);die();
 	require('./vue/utilisateur/questReponseProf.tpl');
+}
+
+function retour(){
+	//retour à l'accueil du prof
+	$url = "index.php?controle=utilisateur&action=accueil";
+	header ("Location:" .$url) ;
 }
 
 function accueilBilan(){
@@ -137,7 +188,11 @@ function accueilBilan(){
 	$test = $_SESSION['test'];
 	//le groupe choisi
 	$groupe = $_SESSION['groupe'];
-	//Les notes des élèves 
+	//liste des etudiants connectés
+	$etuConnecte = nbEtuConnecte();
+	//liste des etudiants
+	$etuTotal = nbListeEtudiant();
+	//Les notes des élèves
 	$notes = notes();
 	//Le nom des élèves
 	$noms = noms();

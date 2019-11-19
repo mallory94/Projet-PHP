@@ -27,6 +27,9 @@
 					<h1 id="groupe"><?php echo $groupe ?> </h1>
 					<h1 id="groupe">Questions disponibles pour ce test</h1>
 				</div>
+				<form method="post" action="index.php?controle=questReponse&action=retour">
+				<input id="retour" type="submit">
+				</form>
 				<form method="post" action="index.php?controle=questReponse&action=updateQuestionPasDansTest">
 					<div id="tab">
 					<p>Voici les questions que vous pouvez ajouter dans le test :</p>
@@ -82,9 +85,11 @@
 						try{
 							$question = utf8_encode($questReponsesDansTest[0]['texte']);
 							$reponse = utf8_encode($questReponsesDansTest[0]['texte_rep']);
+							$info = $infoBloque[0]['bBloque'];
 							$compteur = 1;
+							$cptinfo = 1;
 
-							echo ('<tr><td><input type="checkbox" id="' .$compteur. '" name="question[]" value="' .$question. '"></td>');
+							echo ('<tr><td><input type="checkbox" class="' .$info. '" id="' .$compteur. '" name="question[]" value="' .$question. '"></td>');
 							echo ('<td id="question" for="' .$compteur. '">' .$question. '</td>');
 							echo ('<td id="reponse">' . $reponse . ' </td>');
 							
@@ -97,13 +102,15 @@
 									echo ('<td id="reponse">' . $reponse . ' </td>');
 								}
 								else{
-									echo ('</tr><tr><td><input type="checkbox" id="' .$compteur. '" name="question[]" value="' .$question. '"></td>');
+									echo ('</tr><tr><td><input type="checkbox" class="' .$info. '" id="' .$compteur. '" name="question[]" value="' .$question. '"></td>');
 									echo ('<td id="question" for="' .$compteur. '">' .$question. '</label></td>');
 									echo ('<td id="reponse">' . $reponse . ' </td>');
 								}
 							}
 							echo('</tr></table></div>');
-							echo('<div><input id="validation" type="submit"></input></div>');
+							echo('<div><input id="validation" name="validation" type="submit"></input>');
+							echo('<div><input id="bloquer" name="bloquer" type="submit"></input>');
+							echo('<div><input id="debloquer" name="debloquer" type="submit"></input></div>');
 						}		
 						catch (Exception $e) {
 							echo "Il n'y a encore aucune question dans ce test ! \n";
