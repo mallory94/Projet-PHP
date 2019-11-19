@@ -22,4 +22,48 @@
 
 .bilan{
     background-color:white;
+    margin: 0 auto;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border: 0px solid #000000;
+    padding: 40px;
+    width: 650px!important;
+    font-size:19px;
 }
+
+#centerDiv2{
+    margin : 0 auto;
+    width: 100%;
+    text-align: center;
+    padding-top: 110px;
+    display: block;
+    height: fit-content;
+}
+
+.titreQuestion{
+
+}
+
+input.btnDeconnection {
+    width: fit-content;
+    margin-top: 40px;
+    /* background-color : #850647; */
+    background: rgb(133,6,71);
+background: radial-gradient(circle, rgba(133,6,71,1) 0%, rgba(156,104,130,1) 100%);
+    color:white;
+}
+
+input.btnDeconnection:hover {
+    background : white;
+    /* color:#830143; */
+    color:rgb(133,6,71);
+    border-color: rgb(112, 62, 87);
+}
+
+body{
+    height:auto;
+    background: rgb(133,6,71);
+    background: linear-gradient(90deg, rgba(133,6,71,1) 0%, rgba(255,255,255,1) 51%, rgba(133,6,71,1) 100%);
+}
+

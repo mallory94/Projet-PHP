@@ -28,29 +28,40 @@
 					<h1 id="groupe"><?php echo $groupe ?> </h1>
 					<h1 id="groupe">Bilan du groupe</h1>
 				</div>
-			<div id="tab"><table>
-			  <tr>
-			    <td id="question">NOM ETUDIANT</td>
-			    <td id="question">NOTE</td>
-			  </tr>
-		      <?php
+				<br>
+				<p>Nombre d'étudiant connecté : <?php echo $etuConnecte ?> / <?php echo $etuTotal ?>
+				<br><br>
+				<div id="tab">
+					<table>
+					  <tr>
+					    <td id="question">NOM ETUDIANT</td>
+					    <td id="question">NOTE</td>
+					  </tr>
+				      <?php
+				      	for($i = 0; $i < count($noms); $i++){
+				      		$nomAffiche = $noms[$i]['nom'];
 
-		      	for($i = 0; $i < count($noms); $i++){
-		      		$nomAffiche = ($noms[$i])['nom'];
+				      		$noteAffiche = $notes[$i]['note_test'];
 
-		      		$noteAffiche = ($notes[$i])['note_test'];
-
-		      		echo ('<tr>');
-		    		echo ('<td id="reponse">' .$nomAffiche. '</td>');
-		    		echo ('<td id="reponse">' .$noteAffiche. '</td>');
-		    		echo('</tr>');
-		     	}
-		      ?>
-			</table>
+				      		echo ('<tr>');
+				    		echo ('<td id="reponse">' .$nomAffiche. '</td>');
+				    		echo ('<td id="reponse">' .$noteAffiche. '/100 autrement dit '. ($noteAffiche/100)*20 .'/20</td>');
+				    		echo('</tr>');
+				     	}
+				      ?>
+					</table>
+				</div>
+				<br>
+				<p>La moyenne du groupe est : <?php echo($moyenne.'/100')  ?></p>
+			</div>
 		</div>
-			<br>
-			<p>La moyenne du groupe est : <?php echo $moyenne ?></p>
-		</div>
+
+		<div class="contentPage">	
+			<div class="returnButtonContainer">
+				<form method="post" action="index.php?controle=questReponse&action=retour">
+					<input id="validation" type="submit" value="retour">
+				</form>
+			</div>
 		</div>
 	</body>
 </html>
