@@ -199,11 +199,17 @@ function exportBilanBD(){
 		if($bool){
 			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
 		}
-		var_dump($resultat);
-		// $excel = "";
-		// foreach ($resultat as $bilan) {
-		// 	$excel .= 
-		// }
+		//var_dump($resultat);
+		$excel = "";
+		$excel .=  "nom\tprenom\tnote_test\n";
+		foreach ($resultat as $bilan) {
+			$excel .= "$bilan[nom]\t$bilan[prenom]\t$bilan[note_test]\n";
+		}
+		//var_dump($excel);
+		header("Content-type: application/vnd.ms-excel");
+		header("Content-disposition: attachment; filename=bilan-test.xls");
+		print $excel;
+		exit;		
 	}
 	catch (PDOException $e) {
 		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
