@@ -19,4 +19,11 @@ function getMoyenne($id_test) {
 	return(getMoyenneBD($id_test));
 }
 
+function arreterTest(){
+	var_dump($_SESSION['idtest']);
+	require_once ('./modele/testBD.php');
+	arreterTestBD($id_test);
+	//header ("Location: index.php?controle=utilisateur&action=accueil" );
+}
+
 ?>

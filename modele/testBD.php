@@ -168,4 +168,19 @@ function supprimerBilanBD($idtest){
 	}
 }
 
+function arreterTestBD($id_test){
+	require ("../modele/connect.php") ; 
+	$sql="UPDATE test SET bActif = 0 WHERE id_test =:idTest";
+	$resultat= array();
+	try{
+		$commande = $pdo->prepare($sql);
+		$commande->bindParam(':idTest', $id_test);
+		$bool = $commande->execute();
+	}
+	catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+		die(); 
+	}
+}
+
 ?>

@@ -53,7 +53,7 @@
 				</div>
 				<br>
 				<p>La moyenne du groupe est : <?php echo($moyenne.'/100')  ?></p>
-				<form method="post" action="">
+				<form method="post" action="./controle/finTest.php">
 					<input id="validation" type="submit" value="Arreter le test">
 				</form>
 			</div>
