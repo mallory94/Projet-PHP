@@ -81,6 +81,7 @@ function validationChoix(){
 	}
 
 	$_SESSION['idtest'] = idTestBD($_POST['listeTests']);
+	
 
 	//L'utilisateur à cliquer sur le bouton validation
 	if (isset($_POST['validation'])){
@@ -89,9 +90,15 @@ function validationChoix(){
 	elseif (isset($_POST['bilan'])){
 		$url = "index.php?controle=questReponse&action=accueilBilan";
 	}
-	
+	elseif (isset($_POST['supprimer'])){
+		//var_dump($_SESSION['idtest'][0]['id_test']);die();
+		supprimerTestBD($_SESSION['idtest'][0]['id_test']);
+		supprimerResultatBD($_SESSION['idtest'][0]['id_test']);
+		supprimerQcmTestBD($_SESSION['idtest'][0]['id_test']);
+		supprimerBilanBD($_SESSION['idtest'][0]['id_test']);
+		$url = "index.php?controle=utilisateur&action=accueil";
+	}
 	header ("Location:" .$url) ;
-
 }
 
 //fonction qui actualise les questions dans un test donné apres validation du formulaire
@@ -134,10 +141,20 @@ function updateQuestionPasDansTest(){
 	
 	$idtest = $_SESSION['idtest'][0]['id_test'];
 
-	foreach($_POST['question'] as $val){
-		
-		$idquestion = recupIdQuestionBD($val)[0]['id_quest'];
-		updateQuestionsPasDansTestBD($idquestion, $idtest);
+	if(isset($_POST['ajouter'])){
+		foreach($_POST['question'] as $val){
+			$idquestion = recupIdQuestionBD($val)[0]['id_quest'];
+			updateQuestionsPasDansTestBD($idquestion, $idtest);
+		}
+	}
+
+	elseif(isset($_POST['supprimer'])){
+		foreach($_POST['question'] as $val){
+			$idquestion = recupIdQuestionBD($val)[0]['id_quest'];
+			supprimerQuestionBD($idquestion);
+			supprimerReponsesBD($idquestion);
+			supprimerQcmBD($idquestion);
+		}
 	}
 
 	//retour à l'accueil du prof

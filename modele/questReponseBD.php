@@ -224,4 +224,90 @@ function updateQuestionsPasDansTestBD($idquestion, $idtest){
 		die(); 
 	}
 }
+
+function supprimerQuestionBD($idquestion){
+
+	require ("modele/connect.php") ; 
+
+	$sql="DELETE FROM question WHERE id_quest =:quest";
+
+	$resultat= array();
+
+	try{
+		$commande = $pdo->prepare($sql);
+		$commande->bindParam(':quest', $idquestion);
+		$bool = $commande->execute();
+		
+		if($bool){
+			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+			return $resultat;
+		}
+		else{
+			return array();
+		}
+
+	}
+	catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+		die(); 
+	}
+}
+
+function supprimerReponsesBD($idquestion){
+
+	require ("modele/connect.php") ; 
+
+	$sql="DELETE FROM reponse WHERE id_quest =:quest";
+
+	$resultat= array();
+
+	try{
+		$commande = $pdo->prepare($sql);
+		$commande->bindParam(':quest', $idquestion);
+		$bool = $commande->execute();
+		
+		if($bool){
+			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+			return $resultat;
+		}
+		else{
+			return array();
+		}
+
+	}
+	catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+		die(); 
+	}
+}
+
+function supprimerQcmBD($idquestion){
+
+	require ("modele/connect.php") ; 
+
+	$sql="DELETE FROM qcm WHERE id_quest =:quest";
+
+	$resultat= array();
+
+	try{
+		$commande = $pdo->prepare($sql);
+		$commande->bindParam(':quest', $idquestion);
+		$bool = $commande->execute();
+		
+		if($bool){
+			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+			return $resultat;
+		}
+		else{
+			return array();
+		}
+
+	}
+	catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+		die(); 
+	}
+}
+
+
 ?>

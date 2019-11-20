@@ -1,17 +1,17 @@
 <?php
 //Connexion à la base de donnée 
-	// $hostname = "localhost";	
-	// $base= "MaBase";
-	// $loginBD= "root";	
-	// $passBD="";
-	// $pdo = null;
-
-
 	$hostname = "localhost";	
-	$base="ProjetPHP";
+	$base= "MaBase";
 	$loginBD= "root";	
 	$passBD="";
 	$pdo = null;
+
+
+	//$hostname = "localhost";	
+	//$base="ProjetPHP";
+	//$loginBD= "root";	
+	//$passBD="";
+	//$pdo = null;
 
 
 try {

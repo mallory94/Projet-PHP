@@ -121,7 +121,7 @@
 								}
 							}
 							echo('</tr></table></div>');
-							echo('<div class="outerDiv"><div class="innerDiv"><input id="validation" type="submit" value="ajouter"></input></div></div>');
+							echo('<div class="outerDiv"><div class="innerDiv"><input id="validation" type="submit" name="ajouter"value="ajouter"></input><input id=validation" type="submit" name="supprimer" value="supprimer"</input></div></div>');
 						}		
 						catch (Exception $e) {
 							echo "Toutes les questions disponibles sont déjà dans le test, Veuillez en créer de nouvelles !\n";
