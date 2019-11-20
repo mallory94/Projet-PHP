@@ -21,38 +21,37 @@ if (isset($_POST['q_answer'])) {
         // var_dump($key);
         $compteurReponsesDonnees = 0;
         foreach ($value as $idReponse) {
-            // var_dump($idReponse);
-            //creerResultatBD($_SESSION['idTestChoisi'] , $_SESSION['id_etu'], $key, $idReponse);
+            if (aDejaFaitLeTest($_SESSION['id_etu'], $_SESSION['idTestChoisi']) == false){
+             creerResultatBD($_SESSION['idTestChoisi'] , $_SESSION['id_etu'], $key, $idReponse);
+            }
             if (verifRep($idReponse) == false) {
                 $questionReussie = false;
             }
             $compteurReponsesDonnees++; 
         }
         $listeQuestResultat[$key] = $questionReussie;
-        // var_dump($questionReussie);
+ 
         if ($questionReussie == true && $compteurReponsesDonnees == $nbRepValides) {
             $compteurQuestionsReussies++;
         }
     }
     $nbQuestionRepondues = sizeof($_POST['q_answer']);
-    // var_dump($_SESSION['listeQuestions']);
-    // var_dump($_POST['q_answer']);
+
 }
 else {
     $compteurQuestionsReussies = 0;
     $nbQuestionRepondues = 0;
-    //var_dump($_SESSION['listeQuestions']);
+
     foreach($_SESSION['listeQuestions'] as $quest) {
-        //var_dump($quest);
+
         $listeQuestResultat[$quest['id_quest']] = false;
     }
     
 }
 
-//var_dump($compteurQuestionsReussies);
-//var_dump($listeQuestResultat);
+
 $note = $compteurQuestionsReussies * (100/$nbQuestion);
-//var_dump($note);
+
 if (aDejaFaitLeTest($_SESSION['id_etu'], $_SESSION['idTestChoisi']) == false) {
     enregistrerBilan( $_SESSION['idTestChoisi'], $_SESSION['id_etu'], $note);
 }

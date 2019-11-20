@@ -76,4 +76,9 @@ function setBConnect($login, $boolean){
     setBConnectBD($login,$boolean);
 }
 
+function resultatExiste($id_test, $id_etu, $id_quest, $id_rep){
+    require_once ("../modele/etudiantBD.php");
+    return resultatExisteBD();
+}
+
 ?>

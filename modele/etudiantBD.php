@@ -121,6 +121,27 @@ function listeReponsesBD($id_question){
 	return ;
 }
 
+function resultatExisteBD($id_test, $id_etu, $id_quest, $id_rep) {
+	require ("../modele/connect.php");
+	$sql = "SELECT COUNT(id_test) FROM resultat where id_test=:? AND  id_etu=:? AND
+	id_quest=:? AND date_res=CURDATE() AND id_rep=:?";
+	try {
+		$commande = $pdo->prepare($sql);
+		$bool = $commande->execute();
+		if($bool){
+			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+			var_dump($resultat);
+			return $resultat;
+		}
+		
+	}
+	catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+		die();
+	}
+	return ;
+}
+
 function creerResultatBD($id_test, $id_etu, $id_quest, $id_rep){
 	require ("../modele/connect.php");
 	$sql = 'INSERT INTO resultat (id_test, id_etu, id_quest, date_res, id_rep) VALUES
