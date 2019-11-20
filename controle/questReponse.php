@@ -235,4 +235,35 @@ function nbEtudiantTestFini(){
 	require_once ("./modele/etudiantBD.php");
 	return(nbEtudiantTestFiniBD());
 }
+
+function creerQuestion(){
+	require_once ("./modele/questReponseBD.php");
+	$question = $_POST['question'];
+	$multiple = 0;
+	
+	//var_dump($_POST);die();
+	if(count($_POST['rep'])>1){
+		$multiple = 1;
+	}
+	creerQuestionBD($question,$multiple);
+	$idquestion = recupIdQuestionBD($question);
+	$idtest = recupIdTest();
+	creerQcmBD($idtest,$idquestion[0]['id_quest']);
+	for($i = 0; $i < $_POST['nbRep']; $i++){
+		$txtRep = $_POST['rep1'][$i];
+		$bonneRep = 0;
+		for($j = 0; $j < count($_POST['rep']); $j++){
+			if($_POST['rep'][$j] == "r". ($i + 1)){
+				$bonneRep = 1;
+			}	
+		}
+			
+		creerReponseBD($idquestion[0]['id_quest'],$txtRep,$bonneRep);
+	}
+	
+	//var_dump($cpt);die();
+	$url = "index.php?controle=questReponse&action=accueilQuestionReponse";
+	header ("Location:" .$url) ;
+}
+
 ?>

@@ -292,4 +292,68 @@ function supprimerQcmBD($idquestion){
 		die(); 
 	}
 }
+function creerQuestionBD($question,$multiple){
+	require ("modele/connect.php") ; 
+	$sql="INSERT INTO question (id_theme, titre, texte, bmultiple) VALUES (1,?,?,?)";
+	$resultat= array();
+	try{
+		$commande = $pdo->prepare($sql);
+		$bool = $commande->execute(array($question,$question,$multiple));
+		
+		if($bool){
+			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+			return $resultat;
+		}
+		else{
+			return array();
+		}
+	}
+	catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+		die(); 
+	}
+}
+function creerQcmBD($idtest,$idquest){
+	require ("modele/connect.php") ; 
+	$sql="INSERT INTO qcm (id_test, id_quest, bAutorise,bBloque,bAnnule) VALUES (?,?,1,0,0)";
+	$resultat= array();
+	try{
+		$commande = $pdo->prepare($sql);
+		$bool = $commande->execute(array($idtest,$idquest));
+		
+		if($bool){
+			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+			return $resultat;
+		}
+		else{
+			return array();
+		}
+	}
+	catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+		die(); 
+	}
+}
+function creerReponseBD($idquest,$txtRep,$rep){
+	require ("modele/connect.php") ; 
+	$sql="INSERT INTO reponse (id_quest, texte_rep, bvalide) VALUES (?,?,?)";
+	$resultat= array();
+	try{
+		$commande = $pdo->prepare($sql);
+		$bool = $commande->execute(array($idquest,$txtRep,$rep));
+		
+		if($bool){
+			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+			return $resultat;
+		}
+		else{
+			return array();
+		}
+
+	}
+	catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+		die(); 
+	}
+}
 ?>

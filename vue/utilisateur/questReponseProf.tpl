@@ -29,7 +29,7 @@
 					<h1 id="groupe"><?php echo $groupe ?> </h1>
 					<h1 id="groupe">Création d'une nouvelle question</h1>
 				</div>
-				<form method="post" action="index/php?controle=questReponse&action=updateQuestionPasDansTest"> <!-- faudra changer l'action -->
+				<form method="post" action="index.php?controle=questReponse&action=creerQuestion"> <!-- faudra changer l'action -->
 					<div class="rbContainer">
 						<h1> Nombre de réponse : </h1>
 						<input type="radio" name="nbRep" value="2" checked="checked" onchange="toggle_visibility(this)"><label for="nbRep">2 réponses</label></input>
@@ -39,20 +39,20 @@
 					<div class="qContainer"><input type="text" name="question" placeholder="Votre question"></input></div>
 					<div class="repContainer">
 						<div id="r1">
-							<input type="checkbox" name="r1Vrai"><label for="r1Vrai">valide</label>
-							<input type="text" class="reponseCrea" name="rep1" placeholder="Réponse1"></input>
+							<input type="checkbox" name="rep[]" value="r1"><label for="r1Vrai">valide</label>
+							<input type="text" class="reponseCrea" name="rep1[]" placeholder="Réponse1"></input>
 						</div>
 						<div id="r2">
-							<input type="checkbox" name="r2Vrai"><label for="r2Vrai">valide</label>
-							<input type="text" class="reponseCrea" name="rep2" placeholder="Réponse2"></input>
+							<input type="checkbox" name="rep[]" value="r2"><label for="r2Vrai">valide</label>
+							<input type="text" class="reponseCrea" name="rep1[]" placeholder="Réponse2"></input>
 						</div>
 						<div id="r3">
-							<input type="checkbox" name="r3Vrai"><label for="r3Vrai">valide</label>
-							<input type="text" class="reponseCrea" name="rep3" placeholder="Réponse3"></input>
+							<input type="checkbox" name="rep[]" value="r3"><label for="r3Vrai">valide</label>
+							<input type="text" class="reponseCrea" name="rep1[]" placeholder="Réponse3"></input>
 						</div>
 						<div id="r4">
-							<input type="checkbox" name="r4Vrai"><label for="r4Vrai">valide</label>
-							<input type="text" class="reponseCrea" name="rep4" placeholder="Réponse4"></input>
+							<input type="checkbox" name="rep[]" value="r4"><label for="r4Vrai">valide</label>
+							<input type="text" class="reponseCrea" name="rep1[]" placeholder="Réponse4"></input>
 						</div>
 					</div>
 
@@ -96,7 +96,7 @@
 								}
 							}
 							echo('</tr></table></div>');
-							echo('<div class="outerDiv"><div class="innerDiv"><input id="validation" type="submit" name="ajouter"value="ajouter"></input><input id=validation" type="submit" name="supprimer" value="supprimer"</input></div></div>');
+							echo('<div class="outerDiv"><div class="innerDiv"><input id="validation" type="submit" value="ajouter"></input><input id="validation" type="submit" name="supprimer" value="supprimer"</input></div></div>');
 						}		
 						catch (Exception $e) {
 							echo "Toutes les questions disponibles sont déjà dans le test, Veuillez en créer de nouvelles !\n";

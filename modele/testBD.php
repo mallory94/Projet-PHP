@@ -201,7 +201,7 @@ function exportBilanBD(){
 		}
 		//var_dump($resultat);
 		$excel = "";
-		$excel .=  "nom\tprenom\tnote_test\n";
+		$excel .=  "nom\tprenom\tnote reçue au test\n";
 		foreach ($resultat as $bilan) {
 			$excel .= "$bilan[nom]\t$bilan[prenom]\t$bilan[note_test]\n";
 		}
