@@ -155,6 +155,7 @@ function updateQuestionPasDansTest(){
 			supprimerQuestionBD($idquestion);
 			supprimerReponsesBD($idquestion);
 			supprimerQcmBD($idquestion);
+		}
 	}
 
 	//retour à l'accueil du prof
@@ -231,10 +232,7 @@ function accueilBilan(){
 }
 
 function nbEtudiantTestFini(){
-	require_once("./modele/etudiantBD.php");
+	require_once ("./modele/etudiantBD.php");
 	return(nbEtudiantTestFiniBD());
 }
-
-
-
 ?>
