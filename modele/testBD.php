@@ -183,4 +183,31 @@ function arreterTestBD($id_test){
 	}
 }
 
+
+function exportBilanBD(){
+	require ("../modele/connect.php") ; 
+	$sql="SELECT *
+	FROM bilan, etudiant 
+	WHERE bilan.id_test=:idTest AND etudiant.num_grpe=:numGroupe"
+	;
+	$resultat= array();
+	try{
+		$commande = $pdo->prepare($sql);
+		$commande->bindParam(':idTest', $_SESSION['idtest'][0]['id_test']);
+		$commande->bindParam(':numGroupe',$_SESSION['groupe']);
+		$bool = $commande->execute();
+		if($bool){
+			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+		}
+		var_dump($resultat);
+		// $excel = "";
+		// foreach ($resultat as $bilan) {
+		// 	$excel .= 
+		// }
+	}
+	catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+		die(); 
+	}
+}
 ?>

@@ -56,6 +56,10 @@
 				<form method="post" action="./controle/finTest.php">
 					<input id="validation" type="submit" value="Arreter le test">
 				</form>
+				<br>
+				<form method="post" action="./controle/exportExcel.php">
+					<input id="validation" type="submit" value="Exporter le bilan">
+				</form>
 			</div>
 		</div>
 
