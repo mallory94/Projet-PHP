@@ -81,7 +81,7 @@ function validationChoix(){
 	}
 
 	$_SESSION['idtest'] = idTestBD($_POST['listeTests']);
-
+	var_dump($_SESSION['idtest']);
 	//L'utilisateur à cliquer sur le bouton validation
 	if (isset($_POST['validation'])){
 		$url = "index.php?controle=questReponse&action=accueilQuestionReponse";
@@ -182,6 +182,8 @@ function retour(){
 }
 
 function accueilBilan(){
+	require_once ("./modele/testBD.php");
+	$_SESSION['idtest'] = idTestBD($_SESSION['test']);
 	$login = $_SESSION['login'];
 
 	//le nom du test
@@ -207,8 +209,12 @@ function accueilBilan(){
 	else{
 		$moyenne = 0;
 	}
-	
-
+	$nbEtuTestFini = nbEtudiantTestFini();
 	require('./vue/utilisateur/BilanProf.tpl');
+}
+
+function nbEtudiantTestFini(){
+	require_once("./modele/etudiantBD.php");
+	return(nbEtudiantTestFiniBD());
 }
 ?>

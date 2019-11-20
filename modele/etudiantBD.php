@@ -267,11 +267,12 @@ function setBConnectBD($login, $boolean){
 function etudiantConnecteBD(){
 	require ("./modele/connect.php");
 
-	$sql = "SELECT nom FROM etudiant WHERE num_grpe =:groupe AND bConnect = 1";
+	$sql = "SELECT nom FROM etudiant, test WHERE etudiant.num_grpe =:groupe AND test.num_grpe=etudiant.num_grpe AND bConnect = 1 AND test.id_test=:idTest";
 
 	try {
 		$commande = $pdo->prepare($sql);
-        $commande->bindParam(':groupe', $_SESSION['groupe']);
+		$commande->bindParam(':groupe', $_SESSION['groupe']);
+		$commande->bindParam(':idTest', $_SESSION['idtest'][0]['id_test']);
 		$bool = $commande->execute();
 
 		if($bool){
@@ -291,16 +292,49 @@ function etudiantConnecteBD(){
 function listeEtudiantBD(){
 	require ("./modele/connect.php");
 
-	$sql = "SELECT nom FROM etudiant WHERE num_grpe =:groupe";
+	$sql = "SELECT nom FROM etudiant , test WHERE etudiant.num_grpe =:groupe AND test.num_grpe=etudiant.num_grpe AND test.id_test=:idTest";
 
 	try {
 		$commande = $pdo->prepare($sql);
-        $commande->bindParam(':groupe', $_SESSION['groupe']);
+		$commande->bindParam(':groupe', $_SESSION['groupe']);
+		$commande->bindParam(':idTest', $_SESSION['idtest'][0]['id_test']);
 		$bool = $commande->execute();
 
 		if($bool){
 			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
 			return $resultat;
+		}
+		else{
+			return array();
+		}
+	}
+	catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+		die(); 
+	}
+}
+
+
+//nombre d'étudiant ayant fini le test pour un groupe donné
+function nbEtudiantTestFiniBD(){
+	require ("./modele/connect.php");
+
+	$sql = "SELECT COUNT(bilan.id_bilan) as somme
+			FROM bilan, etudiant
+			WHERE etudiant.num_grpe =:groupe AND bilan.id_test=:idTest 
+			AND bilan.id_etu=etudiant.id_etu
+			";
+
+	try {
+		$commande = $pdo->prepare($sql);
+		$commande->bindParam(':groupe', $_SESSION['groupe']);
+		//var_dump($_SESSION['groupe']);
+		$commande->bindParam(':idTest', $_SESSION['idtest'][0]['id_test']);
+		$bool = $commande->execute();
+
+		if($bool){
+			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+			return $resultat[0]['somme'];
 		}
 		else{
 			return array();

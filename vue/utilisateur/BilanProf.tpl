@@ -29,7 +29,7 @@
 					<h1 id="groupe">Bilan du groupe</h1>
 				</div>
 				<br>
-				<p>Nombre d'étudiant connecté : <?php echo $etuConnecte ?> / <?php echo $etuTotal ?>
+				<p>Nombre d'étudiants connectés : <?php echo $etuConnecte ?> / <?php echo($etuTotal . "<br>Nombre d'étudiants ayant terminé le test : ". $nbEtuTestFini . "/" . $etuTotal)  ?>
 				<br><br>
 				<div id="tab">
 					<table>
