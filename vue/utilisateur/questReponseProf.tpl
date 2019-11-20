@@ -6,7 +6,7 @@
   <title>Accueil</title>
   <link href="./vue/bootstrap/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./vue/styleCSS/questRep.css">
-  <script src="./js/creaQuest.js"></script>
+  <script src="./vue/js/creaQuest.js" type="text/javascript"></script>
 </head>
 	<header>
 			<div id="logo">
@@ -21,32 +21,7 @@
 	</header>
 
 	<body>
-		<script type="text/javascript">
-			    function toggle_visibility(myRadio) {
-			    	var r2 = document.getElementById("r2");
-			    	var r3 = document.getElementById("r3");
-			    	var r4 = document.getElementById("r4");
-			    	if(myRadio.value==2){
-			    		r2.style.display = "block";
-			    		r3.style.display = "none";
-			    		r4.style.display = "none";
-			    	}
-
-			    	if(myRadio.value==3){
-			    		r2.style.display = "block";
-			    		r3.style.display = "block";
-			    		r4.style.display = "none";
-			    	}
-
-			    	if(myRadio.value==4){
-			    		r2.style.display = "block";
-			    		r3.style.display = "block";
-			    		r4.style.display = "block";
-			    	}
-			    }
-
-		</script>
-
+		
 		<div class="contentPage">
 			<div class="form-group">
 				<div id="infoSelected">
