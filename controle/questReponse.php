@@ -120,14 +120,14 @@ function updateQuestionDansTest(){
 
 	elseif(isset($_POST['bloquer'])){
 		foreach($_POST['question'] as $val){
-			$idquestion = recupIdQuestionBD($val)[0]['id_quest'];
+			$idquestion = recupIdQuestionBD(utf8_decode($val))[0]['id_quest'];
 			bloquerQuestionsBD($idquestion,$idtest);
 		}
 	}
 
 	elseif(isset($_POST['debloquer'])){
 		foreach($_POST['question'] as $val){
-			$idquestion = recupIdQuestionBD($val)[0]['id_quest'];
+			$idquestion = recupIdQuestionBD(utf8_decode($val))[0]['id_quest'];
 			debloquerQuestionsBD($idquestion,$idtest);
 		}
 	}
@@ -145,13 +145,13 @@ function updateQuestionPasDansTest(){
 
 	if(isset($_POST['ajouter'])){
 		foreach($_POST['question'] as $val){
-			$idquestion = recupIdQuestionBD($val)[0]['id_quest'];
+			$idquestion = recupIdQuestionBD(utf8_decode($val))[0]['id_quest'];
 			updateQuestionsPasDansTestBD($idquestion, $idtest);
 		}
 	}
 	elseif(isset($_POST['supprimer'])){
 		foreach($_POST['question'] as $val){
-			$idquestion = recupIdQuestionBD($val)[0]['id_quest'];
+			$idquestion = recupIdQuestionBD(utf8_decode($val))[0]['id_quest'];
 			supprimerQuestionBD($idquestion);
 			supprimerReponsesBD($idquestion);
 			supprimerQcmBD($idquestion);
