@@ -130,7 +130,7 @@ function resultatExisteBD($id_test, $id_etu, $id_quest, $id_rep) {
 		$bool = $commande->execute();
 		if($bool){
 			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
-			var_dump($resultat);
+			//var_dump($resultat);
 			return $resultat;
 		}
 		
@@ -149,7 +149,7 @@ function creerResultatBD($id_test, $id_etu, $id_quest, $id_rep){
 	try {
 		$commande = $pdo->prepare($sql);
 		$bool = $commande->execute(array($id_test, $id_etu , $id_quest, $id_rep));
-		var_dump($bool);
+		//var_dump($bool);
 	}
 	catch (PDOException $e) {
 		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");

@@ -81,7 +81,7 @@ function validationChoix(){
 	}
 
 	$_SESSION['idtest'] = idTestBD($_POST['listeTests']);
-	var_dump($_SESSION['idtest']);
+	//var_dump($_SESSION['idtest']);
 	//L'utilisateur à cliquer sur le bouton validation
 	if (isset($_POST['validation'])){
 		$url = "index.php?controle=questReponse&action=accueilQuestionReponse";
