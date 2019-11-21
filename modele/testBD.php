@@ -54,31 +54,6 @@ function idTestBD($titre){
 	}
 }
 
-// function getMoyenneBD($id_test){
-// 	require ("modele/connect.php");
-// 	$sql="SELECT AVG() FROM test  WHERE titre_test =:titre";
-	
-
-// 	try{
-// 		$commande = $pdo->prepare($sql);
-// 		$commande->bindParam(':titre', $titre);
-// 		$bool = $commande->execute();
-		
-// 		if($bool){
-// 			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
-// 			return $resultat;
-// 		}
-// 		else{
-// 			return array();
-// 		}
-
-// 	}
-// 	catch (PDOException $e) {
-// 		echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
-// 		die(); 
-// 	} 
-// }
-
 function supprimerTestBD($idtest){
 	require ("modele/connect.php") ; 
 	$sql="DELETE FROM test WHERE id_test =:test";
@@ -199,13 +174,11 @@ function exportBilanBD(){
 		if($bool){
 			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
 		}
-		//var_dump($resultat);
 		$excel = "";
 		$excel .=  "nom\tprenom\tnote reçue au test\n";
 		foreach ($resultat as $bilan) {
 			$excel .= "$bilan[nom]\t$bilan[prenom]\t$bilan[note_test]\n";
 		}
-		//var_dump($excel);
 		header("Content-type: application/vnd.ms-excel");
 		header("Content-disposition: attachment; filename=bilan-test.xls");
 		print $excel;

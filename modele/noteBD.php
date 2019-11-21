@@ -16,7 +16,6 @@ function notesBD($idtest){
 
 		if($bool){
 			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
-			//var_dump($resultat);var_dump($_SESSION['idtest']);var_dump($_SESSION['groupe']);die();
 			return $resultat;
 		}
 		else{
@@ -39,7 +38,6 @@ function getMoyenneBD($idtest){
 	try{
 		$commande = $pdo->prepare($sql);
 		$commande->bindParam(':test', $idtest);
-		//var_dump( $_SESSION['num_grpe']);
         $commande->bindParam(':groupe', $_SESSION['num_grpe']);
 		$bool = $commande->execute();
 

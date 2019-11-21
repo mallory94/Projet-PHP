@@ -29,17 +29,22 @@
 		<div class="contentPage contentAccueil">
 			<form method="post" action="./controle/testEtudiant.php">
 				<div class="form-group">
-			 	<div id ="centerDiv"><select name="idTestChoisi" class="select-css">
+			 	<div id ="centerDiv">
 					 <?php
 					 	//$compteur = 0;
-					 	foreach($_SESSION['listeTestDispo'] as $titre){
-							echo ('<option value="'. $titre['id_test'] .'">' . $titre['titre_test'] . '</option>');
-							//$compteur++;
+						if (!empty($_SESSION['listeTestDispo'])) {
+							foreach($_SESSION['listeTestDispo'] as $titre){
+								echo ('<select name="idTestChoisi" class="select-css"><option value="'. $titre['id_test'] .'">' . $titre['titre_test'] . '</option></select><br><br>
+								<input type="submit" id="validation"></div>');
+							}
+						}
+						else {
+							echo('Aucun test n\'est disponible pour vous.<br><br>
+							</div>');
 						}
 					?>
-	  			 </select>
-	  			<br><br>
-				  <input type="submit" id="validation"></div>
+	  			 
+	  			
 				</div>
 			</form>
 		</div>

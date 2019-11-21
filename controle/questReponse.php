@@ -113,7 +113,7 @@ function updateQuestionDansTest(){
 	
 	if(isset($_POST['validation'])){
 		foreach($_POST['question'] as $val){
-			$idquestion = recupIdQuestionBD($val)[0]['id_quest'];
+			$idquestion = recupIdQuestionBD(utf8_decode($val))[0]['id_quest'];
 			updateQuestionsDansTestBD($idquestion, $idtest);
 		}
 	}
