@@ -1,7 +1,4 @@
-**BUI Minh-Quan REINO JOAQUIM Anthony HAMILCARO Chloé GACK Mallory**
-
-# QCM LIVE
-
+![visual index](https://i.imgur.com/xTiHCCA.png)
 
 ## DÉMARCHE DE DÉVELOPPEMENT
 
@@ -13,3 +10,5 @@ Ce qcm permet à deux catégories d'utilisateur de se connecter :
 de tests qcm.
 ● Les étudiants, destinés à répondre aux tests.
 ```
+
+![visual index](https://i.imgur.com/MsbvGp8.png)
