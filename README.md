@@ -1,7 +1,5 @@
 **BUI Minh-Quan REINO JOAQUIM Anthony HAMILCARO Chloé GACK Mallory**
 
-# PROJET PWEB
-
 # QCM LIVE
 
 
