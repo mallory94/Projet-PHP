@@ -1,4 +1,4 @@
-![visual index](https://i.imgur.com/xTiHCCA.png)
+![visual index](https://i.imgur.com/qRZR9XC.png)
 
 ![visual index](https://i.imgur.com/oRkI78V.png)
 
